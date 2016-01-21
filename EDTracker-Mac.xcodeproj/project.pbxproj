@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FFAA6FFA1C5051E30059BC80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAA6FF91C5051E30059BC80 /* AppDelegate.m */; };
+		FFAA6FFD1C5051E30059BC80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAA6FFC1C5051E30059BC80 /* main.m */; };
+		FFAA70021C5051E30059BC80 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFAA70001C5051E30059BC80 /* MainMenu.xib */; };
+		FFAA700A1C5052850059BC80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFAA70091C5052850059BC80 /* Assets.xcassets */; };
+		FFAA700F1C505A6B0059BC80 /* EDMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAA700E1C505A6B0059BC80 /* EDMainView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FFAA6FF51C5051E30059BC80 /* EDTracker-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EDTracker-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFAA6FF81C5051E30059BC80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FFAA6FF91C5051E30059BC80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FFAA6FFC1C5051E30059BC80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FFAA70011C5051E30059BC80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		FFAA70031C5051E30059BC80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFAA70091C5052850059BC80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FFAA700D1C505A6B0059BC80 /* EDMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDMainView.h; sourceTree = "<group>"; };
+		FFAA700E1C505A6B0059BC80 /* EDMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDMainView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FFAA6FF21C5051E30059BC80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FFAA6FEC1C5051E30059BC80 = {
+			isa = PBXGroup;
+			children = (
+				FFAA6FF71C5051E30059BC80 /* EDTracker-Mac */,
+				FFAA6FF61C5051E30059BC80 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FFAA6FF61C5051E30059BC80 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FFAA6FF51C5051E30059BC80 /* EDTracker-Mac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FFAA6FF71C5051E30059BC80 /* EDTracker-Mac */ = {
+			isa = PBXGroup;
+			children = (
+				FFAA6FF81C5051E30059BC80 /* AppDelegate.h */,
+				FFAA6FF91C5051E30059BC80 /* AppDelegate.m */,
+				FFAA70091C5052850059BC80 /* Assets.xcassets */,
+				FFAA70001C5051E30059BC80 /* MainMenu.xib */,
+				FFAA70031C5051E30059BC80 /* Info.plist */,
+				FFAA6FFB1C5051E30059BC80 /* Supporting Files */,
+				FFAA700D1C505A6B0059BC80 /* EDMainView.h */,
+				FFAA700E1C505A6B0059BC80 /* EDMainView.m */,
+			);
+			path = "EDTracker-Mac";
+			sourceTree = "<group>";
+		};
+		FFAA6FFB1C5051E30059BC80 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FFAA6FFC1C5051E30059BC80 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FFAA6FF41C5051E30059BC80 /* EDTracker-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFAA70061C5051E30059BC80 /* Build configuration list for PBXNativeTarget "EDTracker-Mac" */;
+			buildPhases = (
+				FFAA6FF11C5051E30059BC80 /* Sources */,
+				FFAA6FF21C5051E30059BC80 /* Frameworks */,
+				FFAA6FF31C5051E30059BC80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EDTracker-Mac";
+			productName = "EDTracker-Mac";
+			productReference = FFAA6FF51C5051E30059BC80 /* EDTracker-Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FFAA6FED1C5051E30059BC80 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "D Henderson";
+				TargetAttributes = {
+					FFAA6FF41C5051E30059BC80 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = FFAA6FF01C5051E30059BC80 /* Build configuration list for PBXProject "EDTracker-Mac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FFAA6FEC1C5051E30059BC80;
+			productRefGroup = FFAA6FF61C5051E30059BC80 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FFAA6FF41C5051E30059BC80 /* EDTracker-Mac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FFAA6FF31C5051E30059BC80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFAA700A1C5052850059BC80 /* Assets.xcassets in Resources */,
+				FFAA70021C5051E30059BC80 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FFAA6FF11C5051E30059BC80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFAA6FFD1C5051E30059BC80 /* main.m in Sources */,
+				FFAA700F1C505A6B0059BC80 /* EDMainView.m in Sources */,
+				FFAA6FFA1C5051E30059BC80 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FFAA70001C5051E30059BC80 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFAA70011C5051E30059BC80 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FFAA70041C5051E30059BC80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FFAA70051C5051E30059BC80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FFAA70071C5051E30059BC80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "EDTracker-Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.org.aibs.EDTracker-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FFAA70081C5051E30059BC80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "EDTracker-Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = "uk.org.aibs.EDTracker-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FFAA6FF01C5051E30059BC80 /* Build configuration list for PBXProject "EDTracker-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFAA70041C5051E30059BC80 /* Debug */,
+				FFAA70051C5051E30059BC80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFAA70061C5051E30059BC80 /* Build configuration list for PBXNativeTarget "EDTracker-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFAA70071C5051E30059BC80 /* Debug */,
+				FFAA70081C5051E30059BC80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FFAA6FED1C5051E30059BC80 /* Project object */;
+}

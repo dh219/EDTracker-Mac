@@ -289,6 +289,7 @@
 				FFAA70081C5051E30059BC80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,6 +10,15 @@
 
 @implementation EDMainView
 
+- (instancetype)initWithFrame:(NSRect)frameRect {
+	printf("init");
+	return [super initWithFrame:frameRect];
+}
+
+- (void)awakeFromNib {
+	printf("Nib");
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
 	[super drawRect:dirtyRect];
 	

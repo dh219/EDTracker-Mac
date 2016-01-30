@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6A294412-2113-4C8E-98CB-A2FC992ABD0A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>EDTracker-Mac</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>d585612f-cdd8-4a53-8c99-01eb17128cf3</key>
+		<string>svn+ssh://gin.aibs.org.uk/usr/local/svn</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>edtracker/EDTracker-Mac/EDTracker-Mac.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>d585612f-cdd8-4a53-8c99-01eb17128cf3</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>d585612f-cdd8-4a53-8c99-01eb17128cf3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>d585612f-cdd8-4a53-8c99-01eb17128cf3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Devel</string>
+		</dict>
+	</array>
+</dict>
+</plist>

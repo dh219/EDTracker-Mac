@@ -11,7 +11,8 @@
 		FFAA6FFD1C5051E30059BC80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAA6FFC1C5051E30059BC80 /* main.m */; };
 		FFAA70021C5051E30059BC80 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFAA70001C5051E30059BC80 /* MainMenu.xib */; };
 		FFAA700A1C5052850059BC80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFAA70091C5052850059BC80 /* Assets.xcassets */; };
-		FFAA700F1C505A6B0059BC80 /* EDMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAA700E1C505A6B0059BC80 /* EDMainView.m */; };
+		FFAB93341C5D799F0075746D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAB93321C5D799F0075746D /* MainViewController.m */; };
+		FFAB93351C5D799F0075746D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFAB93331C5D799F0075746D /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +23,9 @@
 		FFAA70011C5051E30059BC80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		FFAA70031C5051E30059BC80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFAA70091C5052850059BC80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FFAA700D1C505A6B0059BC80 /* EDMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDMainView.h; sourceTree = "<group>"; };
-		FFAA700E1C505A6B0059BC80 /* EDMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDMainView.m; sourceTree = "<group>"; };
+		FFAB93311C5D799F0075746D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		FFAB93321C5D799F0075746D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		FFAB93331C5D799F0075746D /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +64,9 @@
 				FFAA70001C5051E30059BC80 /* MainMenu.xib */,
 				FFAA70031C5051E30059BC80 /* Info.plist */,
 				FFAA6FFB1C5051E30059BC80 /* Supporting Files */,
-				FFAA700D1C505A6B0059BC80 /* EDMainView.h */,
-				FFAA700E1C505A6B0059BC80 /* EDMainView.m */,
+				FFAB93311C5D799F0075746D /* MainViewController.h */,
+				FFAB93321C5D799F0075746D /* MainViewController.m */,
+				FFAB93331C5D799F0075746D /* MainViewController.xib */,
 			);
 			path = "EDTracker-Mac";
 			sourceTree = "<group>";
@@ -134,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFAA700A1C5052850059BC80 /* Assets.xcassets in Resources */,
+				FFAB93351C5D799F0075746D /* MainViewController.xib in Resources */,
 				FFAA70021C5051E30059BC80 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,8 +150,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFAA6FFD1C5051E30059BC80 /* main.m in Sources */,
-				FFAA700F1C505A6B0059BC80 /* EDMainView.m in Sources */,
 				FFAA6FFA1C5051E30059BC80 /* AppDelegate.m in Sources */,
+				FFAB93341C5D799F0075746D /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

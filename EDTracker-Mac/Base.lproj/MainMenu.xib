@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -670,68 +670,14 @@
         <window title="EDTracker-Mac" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="400" y="400" width="640" height="480"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="EiT-Mj-1SZ" customClass="EDMainView">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="640" height="480"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0VO-Og-L4q">
-                        <rect key="frame" x="90" y="321" width="370" height="20"/>
-                        <levelIndicatorCell key="cell" alignment="left" minValue="-32768" maxValue="32768" numberOfTickMarks="9" levelIndicatorStyle="continuousCapacity" id="WBR-4G-tM4"/>
-                    </levelIndicator>
-                    <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Qu-Tp-3Ck">
-                        <rect key="frame" x="90" y="293" width="370" height="20"/>
-                        <levelIndicatorCell key="cell" alignment="left" minValue="-32768" maxValue="32768" numberOfTickMarks="9" levelIndicatorStyle="continuousCapacity" id="62e-p9-Y1W"/>
-                    </levelIndicator>
-                    <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5pt-wr-sRy">
-                        <rect key="frame" x="90" y="265" width="370" height="20"/>
-                        <levelIndicatorCell key="cell" alignment="left" minValue="-32768" maxValue="32768" numberOfTickMarks="9" levelIndicatorStyle="continuousCapacity" id="krC-D3-rWx"/>
-                    </levelIndicator>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBN-Bn-hms">
-                        <rect key="frame" x="18" y="293" width="54" height="20"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="zR0-a4-lwZ">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MM5-9Q-ByM">
-                        <rect key="frame" x="18" y="265" width="54" height="20"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="RVY-jN-KxI">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kuE-Ka-nIi">
-                        <rect key="frame" x="20" y="321" width="57" height="20"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="qvd-Qo-Z8j">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dL9-wf-BCl">
-                        <rect key="frame" x="18" y="18" width="444" height="21"/>
-                        <sliderCell key="cell" state="on" alignment="left" minValue="-30000" maxValue="30000" tickMarkPosition="above" sliderType="linear" id="BMH-oT-AoT"/>
-                        <connections>
-                            <action selector="slideraction:" target="5ic-ef-UD3" id="00R-CC-uN4"/>
-                        </connections>
-                    </slider>
-                </subviews>
             </view>
-            <point key="canvasLocation" x="404" y="283"/>
+            <point key="canvasLocation" x="518.5" y="314"/>
         </window>
-        <customObject id="5ic-ef-UD3" customClass="EDMainView">
-            <connections>
-                <outlet property="xlevel" destination="0VO-Og-L4q" id="ZEJ-vL-Za6"/>
-                <outlet property="xval" destination="kuE-Ka-nIi" id="8EO-aY-2CV"/>
-                <outlet property="ylevel" destination="4Qu-Tp-3Ck" id="Lmp-yj-lTz"/>
-                <outlet property="yval" destination="oBN-Bn-hms" id="aYs-D5-ZrW"/>
-                <outlet property="zlevel" destination="5pt-wr-sRy" id="ERh-0P-18w"/>
-                <outlet property="zval" destination="MM5-9Q-ByM" id="r0T-Vk-4Cy"/>
-            </connections>
-        </customObject>
+        <customObject id="5ic-ef-UD3" customClass="EDMainView"/>
     </objects>
 </document>

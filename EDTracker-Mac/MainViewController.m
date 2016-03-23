@@ -17,6 +17,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+
+	_xval = 0;
+	
+	_serialController = [[SerialControl alloc] init];
+	_serialController.viewcontrol = self;
+
+}
+
+- (void)		redraw {
+	[_xlevel setIntValue:_xval];
 }
 
 @end

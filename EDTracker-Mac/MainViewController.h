@@ -7,13 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SerialControl.h"
 
 @interface MainViewController : NSViewController
 
+@property SerialControl *serialController;
 
 @property (weak) IBOutlet NSLevelIndicator *xlevel;
 @property (weak) IBOutlet NSLevelIndicator *ylevel;
 @property (weak) IBOutlet NSLevelIndicator *zlevel;
 
+@property (assign) int xval;
+
+-(void)redraw;
 
 @end
+

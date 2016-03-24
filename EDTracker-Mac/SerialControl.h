@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
-#import "ORSSerialPort.h"
+@import ORSSerial;
 
 @class MainViewController;
 
@@ -17,6 +17,10 @@
 @property ORSSerialPort *port;
 @property MainViewController *viewcontrol;
 
-//- (void)serialPort:(ORSSerialPort *)serialPort didReceiveData:(NSData *)data;
+-(void) handlePacket:(NSString *)packet;
+-(void)OpenSerial;
+-(void)CloseSerial;
+-(void)SendCString:(const char*)string;
+- (void) writeScaleYaw:(float)yaw Pitch:(float)pitch Smoothing:(float)smoothing;
 
 @end

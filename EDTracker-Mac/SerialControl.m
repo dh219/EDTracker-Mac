@@ -12,16 +12,35 @@
 
 @implementation SerialControl
 
+
 - (id) init {
 	
 	NSLog(@"Init serialcontrol");
-	_port = [ORSSerialPort serialPortWithPath:@"/dev/cu.usbmodem14521"];
+	return self;
+}
+
+-(void)CloseSerial {
+	if( _port ) {
+		[_port sendData:[NSData dataWithBytes:"S" length:1]];
+		[NSThread sleepForTimeInterval:0.5f];
+		[_port close];
+	}
+}
+
+-(void)OpenSerial {
+
+	if( _port ) {
+		[self CloseSerial];
+		[NSThread sleepForTimeInterval:0.5f];
+	}
+	
+	NSLog( @"Opening port '%@'", _port.path );
 	_port.baudRate = @115200;
 	_port.delegate = self;
 	_port.DTR = true;
 	[_port open];
-	
-	return self;
+
+
 }
 
 -(void)serialPortWasOpened:(ORSSerialPort *)serialPort {
@@ -29,14 +48,14 @@
 
 	ORSSerialPacketDescriptor *descriptor = [[ORSSerialPacketDescriptor alloc] initWithPrefixString:@"\n"
 																					   suffixString:@"\r"
-																				maximumPacketLength:128
+																				maximumPacketLength:512
 																						   userInfo:nil];
 	[serialPort startListeningForPacketsMatchingDescriptor:descriptor];
-	
-	NSData *someData = [@"V" dataUsingEncoding:NSUTF8StringEncoding];
-	sleep(1);
-	[_port sendData:someData]; // someData is an NSData object
-	NSLog(@"Sent Hello");
+
+	[NSThread sleepForTimeInterval:0.5f];
+	NSString *s = @"HIV";
+	[_port sendData:[s dataUsingEncoding:NSUTF8StringEncoding]]; // someData is an NSData object
+	NSLog(@"Sent '%@'", s);
 }
 
 -(void)serialPortWasRemovedFromSystem:(ORSSerialPort *)serialPort {
@@ -64,15 +83,12 @@
 {
 	NSString *dataAsString = [[NSString alloc] initWithData:packetData encoding:NSASCIIStringEncoding];
 	NSString *valueString = [dataAsString substringWithRange:NSMakeRange(1, [dataAsString length]-2)];
-	NSLog( @"Packet: %@", valueString );
-
-	NSArray *chunks = [valueString componentsSeparatedByString: @"\t"];
-	if( [chunks count] > 9 ) {
-		int n = [chunks[0] intValue];
+	char t =[valueString characterAtIndex:0];
+/*	if( t >= 64 && t != 'Q' && t != 'T' )
+		NSLog( @"Packet: %@", valueString );
+*/
+	[self handlePacket:valueString];
 	
-		[_viewcontrol setXval:n];
-		[_viewcontrol redraw];
-	}
 }
 /*
 - (void)serialPort:(ORSSerialPort *)serialPort didReceiveData:(NSData *)data
@@ -81,5 +97,142 @@
 	NSLog(@"Data: %@", string );
 }
 */
+
+-(void)SendCString:(const char*)string{
+	NSString *s = [NSString stringWithUTF8String:string];
+	NSData *d = [s dataUsingEncoding:NSUTF8StringEncoding];
+	[_port sendData:d];
+	NSLog(@"Sent: '%@'", s );
+}
+
+-(void)requestInfo {
+	NSString *s = @"I";
+	[_port sendData:[s dataUsingEncoding:NSUTF8StringEncoding]];
+}
+-(void)requestVerbose {
+	NSString *s = @"V";
+	[_port sendData:[s dataUsingEncoding:NSUTF8StringEncoding]];
+}
+
+- (void) writeScaleYaw:(float)yaw Pitch:(float)pitch Smoothing:(float)smoothing {
+	Byte s[8];
+	int16_t i;
+	
+	s[0] = 'C';
+	i = (int16_t)(yaw * 256.0);
+	memcpy( s+1, &i, 2 );
+	i = (int16_t)(pitch * 256.0);
+	memcpy( s+3, &i, 2 );
+	i = (int16_t)(smoothing * 32767);
+	memcpy( s+5, &i, 2 );
+	s[7] = '\n';
+	
+	NSData *d = [NSData dataWithBytes:s length:8];
+	[_port sendData:d];
+}
+
+-(void) handlePacket:(NSString *)packet {
+
+//	NSLog(@"%@",packet);
+	
+	NSArray *chunks = [packet componentsSeparatedByString: @"\t"];
+
+	if( [chunks count] == 0 )
+		return;
+	
+	char type = [chunks[0] characterAtIndex:0];
+	
+	switch( type ) {
+		case('S'):
+		case('h'):
+		case('a'):
+		case('x'):
+		case('y'):
+		case('z'):
+		case('M'):
+		case('p'):
+		case('#'):
+		case('D'):
+		case('R'):
+		case('B'):
+			NSLog(@"R: %c", type );
+			break;
+		case('V'):
+			[_viewcontrol setHasverbose:true];
+			break;
+		case('I'):
+			[_viewcontrol setHasinfo:true];
+			break;
+		case('Q'):
+			break;
+		case('q'):
+			[_viewcontrol setHasinfo:true];
+			if( [chunks count] != 14 )
+				return;
+			for( int j = 0 ; j < 3 ; j++ ) {
+				for( int i = 0 ; i < 3 ; i++ ) {
+					int offset = 4+i+(3*j);
+					[[_viewcontrol magcalmat] setElementValue:[chunks[offset] floatValue] i:i+1 j:j+1];
+				}
+			}
+			break;
+		case('H'):
+			[_port sendData:[NSData dataWithBytes:"VI" length:2]];
+			NSLog(@"Sent VI");
+			break;
+		case('s'):
+			if( [chunks count] != 5 )
+				return;
+			[_viewcontrol setResponse:(short)[chunks[1] integerValue]];
+			[_viewcontrol setYscale:[chunks[2] floatValue]];
+			[_viewcontrol setPscale:[chunks[3] floatValue]];
+			[_viewcontrol setSmoothing:[chunks[4] floatValue]];
+			[[_viewcontrol smoothslider] setFloatValue:[chunks[4] floatValue]*100.0];
+			break;
+		case('O'):
+			if( [chunks count] != 2 )
+				return;
+			[_viewcontrol setOrient:(short)[chunks[1] integerValue]];
+/*			if( newpos != [self mountpos] ) {
+				[self setMountpos:newpos];
+				[[[self parent] serial] write$Data:_magoffset unrotmatrix:_magmat]; // only call when changed -- send the read data back, not user data
+			}
+ */
+			break;
+		case('T'):
+			if( [chunks count] != 2 )
+				return;
+			[_viewcontrol setTemp:[chunks[1] doubleValue]/65535.0];
+			break;
+		default: // regular positional output
+			if( [chunks count] != 10 )
+				return;
+			
+			[_viewcontrol setHasverbose:true];
+			
+			[_viewcontrol setXval:[chunks[0] intValue]];
+			[_viewcontrol setYval:[chunks[1] intValue]];
+			[_viewcontrol setZval:[chunks[2] intValue]];
+			[_viewcontrol setAccx:[chunks[3] intValue]];
+			[_viewcontrol setAccy:[chunks[4] intValue]];
+			[_viewcontrol setAccz:[chunks[5] intValue]];
+			[_viewcontrol setGyrox:[chunks[6] intValue]];
+			[_viewcontrol setGyroy:[chunks[7] intValue]];
+			[_viewcontrol setGyroz:[chunks[8] intValue]];
+			
+//			NSLog( @"%@ %@ %@", chunks[0], chunks[1], chunks[2] );
+			break;
+	}
+	
+	[_viewcontrol update];
+
+	if( ![_viewcontrol hasverbose] ) {
+		[self requestVerbose];
+	}
+	if( ![_viewcontrol hasinfo] ) {
+		[self requestInfo];
+	}
+
+}
 
 @end

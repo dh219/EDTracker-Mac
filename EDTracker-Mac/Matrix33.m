@@ -8,10 +8,9 @@
 
 #import "Matrix33.h"
 
-@implementation Matrix33
-
-float elements[9];
-
+@implementation Matrix33 {
+	float elements[9];
+}
 - (id)init
 {
 	self = [super init];

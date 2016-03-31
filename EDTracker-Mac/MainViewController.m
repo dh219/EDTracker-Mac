@@ -29,7 +29,10 @@
 	_xval = 0;
 	_temp = 0.0;
 	
+	_magoffset = [[Vector3 alloc]init];
 	_magcalmat = [[Matrix33 alloc]init];
+	
+	_qpoints = [[QLineStore alloc]init];
 	
 	_serialController = [[SerialControl alloc] init];
 	_serialController.viewcontrol = self;
@@ -83,6 +86,10 @@
 	[_pscalefield setStringValue:[NSString stringWithFormat:@"%.2f", _pscale]];
 	[_smoothfield setStringValue:[NSString stringWithFormat:@"%.1f", _smoothing*100.0]];
 //	[_smoothslider setFloatValue:_smoothing*100.0];
+	
+	[_magoffx setIntValue:(int)[_magoffset getElementN:1]];
+	[_magoffy setIntValue:(int)[_magoffset getElementN:2]];
+	[_magoffz setIntValue:(int)[_magoffset getElementN:3]];
 	
 	[_magcal11 setFloatValue:[[self magcalmat] getElementi:1 j:1]];
 	[_magcal12 setFloatValue:[[self magcalmat] getElementi:1 j:2]];

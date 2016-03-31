@@ -10,12 +10,14 @@
 		FF9C79981CA1E80B004FF0F5 /* SerialControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9C79971CA1E80B004FF0F5 /* SerialControl.m */; };
 		FF9C79AB1CA1F242004FF0F5 /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF9C79A81CA1F236004FF0F5 /* ORSSerial.framework */; };
 		FF9C79B11CA47802004FF0F5 /* Matrix33.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9C79B01CA47802004FF0F5 /* Matrix33.m */; };
+		FF9C79B61CA4B223004FF0F5 /* Vector3.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9C79B51CA4B223004FF0F5 /* Vector3.m */; };
 		FFAA6FFA1C5051E30059BC80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAA6FF91C5051E30059BC80 /* AppDelegate.m */; };
 		FFAA6FFD1C5051E30059BC80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAA6FFC1C5051E30059BC80 /* main.m */; };
 		FFAA70021C5051E30059BC80 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFAA70001C5051E30059BC80 /* MainMenu.xib */; };
 		FFAA700A1C5052850059BC80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFAA70091C5052850059BC80 /* Assets.xcassets */; };
 		FFAB93341C5D799F0075746D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAB93321C5D799F0075746D /* MainViewController.m */; };
 		FFAB93351C5D799F0075746D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFAB93331C5D799F0075746D /* MainViewController.xib */; };
+		FFE1B3C61CAB17F400B895E3 /* QLineStore.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE1B3C51CAB17F400B895E3 /* QLineStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 		FF9C79A21CA1F235004FF0F5 /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "Frameworks/ORSSerialPort/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		FF9C79AF1CA47802004FF0F5 /* Matrix33.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix33.h; sourceTree = "<group>"; };
 		FF9C79B01CA47802004FF0F5 /* Matrix33.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix33.m; sourceTree = "<group>"; };
+		FF9C79B41CA4B223004FF0F5 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3.h; sourceTree = "<group>"; };
+		FF9C79B51CA4B223004FF0F5 /* Vector3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vector3.m; sourceTree = "<group>"; };
 		FFAA6FF51C5051E30059BC80 /* EDTracker-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EDTracker-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAA6FF81C5051E30059BC80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FFAA6FF91C5051E30059BC80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +55,8 @@
 		FFAB93311C5D799F0075746D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		FFAB93321C5D799F0075746D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		FFAB93331C5D799F0075746D /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		FFE1B3C41CAB17F400B895E3 /* QLineStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QLineStore.h; sourceTree = "<group>"; };
+		FFE1B3C51CAB17F400B895E3 /* QLineStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QLineStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,10 @@
 				FF9C79971CA1E80B004FF0F5 /* SerialControl.m */,
 				FF9C79AF1CA47802004FF0F5 /* Matrix33.h */,
 				FF9C79B01CA47802004FF0F5 /* Matrix33.m */,
+				FF9C79B41CA4B223004FF0F5 /* Vector3.h */,
+				FF9C79B51CA4B223004FF0F5 /* Vector3.m */,
+				FFE1B3C41CAB17F400B895E3 /* QLineStore.h */,
+				FFE1B3C51CAB17F400B895E3 /* QLineStore.m */,
 			);
 			path = "EDTracker-Mac";
 			sourceTree = "<group>";
@@ -214,9 +224,11 @@
 			files = (
 				FF9C79981CA1E80B004FF0F5 /* SerialControl.m in Sources */,
 				FFAA6FFD1C5051E30059BC80 /* main.m in Sources */,
+				FF9C79B61CA4B223004FF0F5 /* Vector3.m in Sources */,
 				FFAA6FFA1C5051E30059BC80 /* AppDelegate.m in Sources */,
 				FFAB93341C5D799F0075746D /* MainViewController.m in Sources */,
 				FF9C79B11CA47802004FF0F5 /* Matrix33.m in Sources */,
+				FFE1B3C61CAB17F400B895E3 /* QLineStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

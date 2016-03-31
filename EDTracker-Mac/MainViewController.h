@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "SerialControl.h"
 #import "Matrix33.h"
+#import "Vector3.h"
+#import "QLineStore.h"
 
 @class ORSSerialPortManager;
 
@@ -39,6 +41,11 @@
 @property (weak) IBOutlet NSTextField *pscalefield;
 @property (weak) IBOutlet NSTextField *smoothfield;
 @property (weak) IBOutlet NSSlider *smoothslider;
+
+
+@property (weak) IBOutlet NSTextField *magoffx;
+@property (weak) IBOutlet NSTextField *magoffy;
+@property (weak) IBOutlet NSTextField *magoffz;
 
 @property (weak) IBOutlet NSTextField *magcal11;
 @property (weak) IBOutlet NSTextField *magcal12;
@@ -77,7 +84,10 @@
 @property (assign) float yscale;
 @property (assign) float smoothing;
 
+@property (strong) Vector3*	magoffset;
 @property (strong) Matrix33* magcalmat;
+
+@property (strong) QLineStore *qpoints;
 
 
 -(void)update;

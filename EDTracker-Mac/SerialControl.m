@@ -83,8 +83,8 @@
 {
 	NSString *dataAsString = [[NSString alloc] initWithData:packetData encoding:NSASCIIStringEncoding];
 	NSString *valueString = [dataAsString substringWithRange:NSMakeRange(1, [dataAsString length]-2)];
-	char t =[valueString characterAtIndex:0];
-/*	if( t >= 64 && t != 'Q' && t != 'T' )
+/*	char t =[valueString characterAtIndex:0];
+	if( t >= 64 && t != 'Q' && t != 'T' )
 		NSLog( @"Packet: %@", valueString );
 */
 	[self handlePacket:valueString];
@@ -141,6 +141,7 @@
 		return;
 	
 	char type = [chunks[0] characterAtIndex:0];
+	Vector3 *vec;
 	
 	switch( type ) {
 		case('S'):
@@ -164,6 +165,14 @@
 			[_viewcontrol setHasinfo:true];
 			break;
 		case('Q'):
+			if( [chunks count] != 5 )
+				return;
+			vec = [[Vector3 alloc]init];
+			[vec setElementValue:[chunks[1] floatValue] n:1];
+			[vec setElementValue:[chunks[2] floatValue] n:2];
+			[vec setElementValue:[chunks[3] floatValue] n:3];
+			[[_viewcontrol qpoints] addVector3:vec];
+			NSLog(@"qlist size: %li", [[_viewcontrol qpoints]count] );
 			break;
 		case('q'):
 			[_viewcontrol setHasinfo:true];
@@ -175,6 +184,10 @@
 					[[_viewcontrol magcalmat] setElementValue:[chunks[offset] floatValue] i:i+1 j:j+1];
 				}
 			}
+			[[_viewcontrol magoffset] setElementValue:[chunks[1] floatValue] n:1];
+			[[_viewcontrol magoffset] setElementValue:[chunks[2] floatValue] n:2];
+			[[_viewcontrol magoffset] setElementValue:[chunks[3] floatValue] n:3];
+			
 			break;
 		case('H'):
 			[_port sendData:[NSData dataWithBytes:"VI" length:2]];

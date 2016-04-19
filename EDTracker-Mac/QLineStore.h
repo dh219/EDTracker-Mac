@@ -12,8 +12,9 @@
 @interface QLineStore : NSObject
 
 @property(readonly) NSUInteger count;
-
+@property(assign) bool ispaused;
 
 -(void)addVector3:(Vector3*)vec;
+-(void)clearList;
 
 @end

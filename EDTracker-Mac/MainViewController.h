@@ -21,6 +21,8 @@
 
 // outlets
 
+@property (assign) IBOutlet NSWindow *pleasewaitsheet;
+
 @property (weak) IBOutlet NSLevelIndicator *xlevel;
 @property (weak) IBOutlet NSLevelIndicator *ylevel;
 @property (weak) IBOutlet NSLevelIndicator *zlevel;
@@ -40,8 +42,6 @@
 @property (weak) IBOutlet NSTextField *yscalefield;
 @property (weak) IBOutlet NSTextField *pscalefield;
 @property (weak) IBOutlet NSTextField *smoothfield;
-@property (weak) IBOutlet NSSlider *smoothslider;
-
 
 @property (weak) IBOutlet NSTextField *magoffx;
 @property (weak) IBOutlet NSTextField *magoffy;
@@ -56,8 +56,11 @@
 @property (weak) IBOutlet NSTextField *magcal31;
 @property (weak) IBOutlet NSTextField *magcal32;
 @property (weak) IBOutlet NSTextField *magcal33;
+@property (weak) IBOutlet NSTextField *magpoints;
 
 @property (weak) IBOutlet NSTextField *serialsend;
+
+@property (weak) IBOutlet NSProgressIndicator *pinwheel;
 
 // state variables
 
@@ -92,8 +95,22 @@
 
 -(void)update;
 - (ORSSerialPortManager *)serialPortManager;
+-(void)activateButtons:(BOOL)set;
 
-// buttons et al
+// buttons
+@property (weak) IBOutlet NSButton *openbutton;
+@property (weak) IBOutlet NSButton *closebutton;
+@property (weak) IBOutlet NSButton *orientbutton;
+@property (weak) IBOutlet NSButton *responsebutton;
+@property (weak) IBOutlet NSStepper *yawstepper;
+@property (weak) IBOutlet NSStepper *pitchstepper;
+@property (weak) IBOutlet NSSlider *smoothslider;
+@property (weak) IBOutlet NSButton *recentrebutton;
+@property (weak) IBOutlet NSButton *biasbutton;
+
+
+
+// button functions et al
 -(IBAction)DTR:(id)sender;
 -(IBAction)OpenSerial:(id)sender;
 -(IBAction)CloseSerial:(id)sender;
@@ -102,10 +119,11 @@
 - (IBAction)Recentre:(id)sender;
 - (IBAction)GyroBias:(id)sender;
 
-
-
-
 -(IBAction)UtilityButton:(id)sender;
+- (IBAction)PauseQ:(id)sender;
+- (IBAction)ClearQList:(id)sender;
+
+-(IBAction)closePleaseWaitSheet:(id)sender;
 
 @end
 

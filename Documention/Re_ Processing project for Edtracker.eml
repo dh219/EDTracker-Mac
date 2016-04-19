@@ -1,0 +1,535 @@
+Return-path: <pocketmoon@gmail.com>
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on gin.aibs.org.uk
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.0 required=6.0 tests=BAYES_50,FREEMAIL_FROM,
+	HTML_MESSAGE,T_DKIM_INVALID,URIBL_BLOCKED autolearn=no version=3.3.2
+Envelope-to: dh219@aibs.org.uk
+Delivery-date: Wed, 16 Sep 2015 09:02:51 +0000
+Received: from mail-la0-f45.google.com ([209.85.215.45])
+	by gin.aibs.org.uk with esmtps (TLS1.2:RSA_ARCFOUR_SHA1:128)
+	(Exim 4.80)
+	(envelope-from <pocketmoon@gmail.com>)
+	id 1Zc8c6-00077n-So
+	for dh219@aibs.org.uk; Wed, 16 Sep 2015 09:02:51 +0000
+Received: by lamp12 with SMTP id p12so123128485lam.0
+        for <dh219@aibs.org.uk>; Wed, 16 Sep 2015 02:02:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :content-type;
+        bh=WXhOtkDpfNBP1NMp3+lzKvWgx4DOJGhtFrhDA8wf/zc=;
+        b=Qs0tKQJgD+IKFh3Z2IyommJNmx+eQG1/97qG2hpgTDjBjFmhpwRYTtqGmysr1WW382
+         S9Nofzmope9nizoJD2VEagSzkev347oxwF/3jNcaD3HBjOTS9j+XvkUlH7rsqzjRUewJ
+         TpiTzVAXyjwf8suonC10dQYIKndR0EUAMlXdIBIK61W0rpz2lBXyLyRgM6YzYTV9RA/h
+         c9Pzm8Tv6Lb9qYpnXiPXe1B+j3L8hLQcxu+TWNKuwXtQaygL7vdD+yAABOxueYtLgSX6
+         zxnspi+hzBe6hY9LiofTbn0gRVixu2aPM3Q1H6Bg0O/Xe85mi3FKA7UzqexK0L9GSPKk
+         Zq7w==
+MIME-Version: 1.0
+X-Received: by 10.152.43.137 with SMTP id w9mr28337490lal.56.1442394161653;
+ Wed, 16 Sep 2015 02:02:41 -0700 (PDT)
+Received: by 10.25.210.4 with HTTP; Wed, 16 Sep 2015 02:02:41 -0700 (PDT)
+In-Reply-To: <CACZiRSLSWNYVDdCUfx3t9CrZdNxOix_+LinJdZY8b0ahnFit9w@mail.gmail.com>
+References: <alpine.DEB.2.02.1509141605210.12312@gin.aibs.org.uk>
+	<CACZiRS+DVvdRRjZnCO6k3CJOiSss5BLPEHmcF=6zmT8MN0tWRA@mail.gmail.com>
+	<alpine.DEB.2.02.1509151343360.12312@gin.aibs.org.uk>
+	<CACZiRSLSWNYVDdCUfx3t9CrZdNxOix_+LinJdZY8b0ahnFit9w@mail.gmail.com>
+Date: Wed, 16 Sep 2015 10:02:41 +0100
+Message-ID: <CACZiRSLh3O92ZqcGVDJGZnV+Hu_xU=n+PJ4YN2nuFT0epa4xfg@mail.gmail.com>
+Subject: Re: Processing project for Edtracker
+From: Rob <pocketmoon@gmail.com>
+To: David Henderson <dh219@aibs.org.uk>
+Content-Type: multipart/alternative; boundary=001a11c1b8fea1b052051fd98ffb
+
+--001a11c1b8fea1b052051fd98ffb
+Content-Type: text/plain; charset=UTF-8
+
+Bit of a brain dump but here goes;
+
+
+All messages are asynchronous. E.g. the UI will ask the EDTracker to
+recenter by sending an R
+The Arduino will recenter and then send an R back to the UI at which point
+the UI knows that
+recentering is complete.
+
+This is the same for the majority of commands. The UI doesn't change state
+when it send the command  it only changes when it gets the response from
+the Arduino.
+
+Floating point values are exchanged as fixed point integers (int16).
+So there are places below where a float will be multiplied then cast as an
+int16 and split into two bytes for transmission.
+
+I can can into details on the calibration maths after you've had a chance
+to digest this lot.
+
+
+*Messages From UI to Arduino*
+
+H Hello - prompt the arduino to say Hello back.
+V Verbose - turns on serial output from Arduino
+I Info - arduino sends basic sketch/config data back to UI
+S sshhh  tells the Arduino to stop talking over serial.  Sent by UI when
+minimised or closed.
+
+B Calc Bias values. Tells Arduino to calculate gyro/accel bias values.
+t  Tell arduino to toggle response mode (linear , exponential).
+p  Tell arduino to toggle polling/interrupt mode
+0 (zero) Restore Factory settings on Arduino.
+
+M/m  Increment/Decrement gyro x axis bias
+N/n   Increment/Decrement gyro y axis bias
+O/o  Increment/Decrement gyro z axis bias
+
+j/J Increment/Decrement accel x axis bias
+k/K Increment/Decrement accel y axis bias
+l/L Increment/Decrement accel z axis bias
+
+c/C Nudge yaw scale down by either 0.25  or 1.0
+d/G Nudge yaw scale up by either 0.25  or 1.0
+
+e/E Nudge pitch scale down by either 0.25  or 1.0
+f/F Nudge pitcg scale up by either 0.25  or 1.0
+
+R Recentre View
+# Toggle autocentre behaviour (6050 only)
+
+D Save current drift compensation (6050 only)
+P Toggle orientation (increments 0 to 6 then wraps back to 0 - see below)
+A/a   Nudge Drift Compensation up/down
+
+C <int16>x3 encoded as 6 bytes followed by a terminator (10)
+(yawscale * 256)
+(pitchscale*256)
+(Low Pass Filter * 327.67)
+10
+
+$     <int16> x 21
+The biggie! This send two 3x3 matrices followed by 3 mag offset values
+(x,y,z)
+The values are all floats encoded as fixed point int16s (two bytes),i.e the
+float values are muiltiplied by a fixed value then cast as int16.
+
+<int16>x3 Mag Offsets for x,y,z  ( float multiplied by 64)
+<int16>x9 Orientated Mag Calibration Matrix ( float multiplied by 8192)
+<int16>x9 UnOrientated Mag Calibration Matrix ( float multiplied by 8192)
+
+
+*Messages From Arduino to UI*
+
+S Indicates Arduino is in silent mode (no serial output).
+H   Hello from Arduino.  UI then sends a V (to put it into Verbose mode and
+I to get basic info
+h   Hello from Arduino while it's auto calibration (Hi but I'm busy...)
+
+a   bias adjust enabled for all axis
+x   bias adjust only enabled for x axis
+y bias adjust only enabled for y axis
+z bias adjust only enabled for z axis
+
+V   Inidcates Arduino now in Verbose mode and talking to UI
+
+Messages that Return Data From Arduino. Data is tab separated
+
+M <string> Generic message from Arduino (single string)
+
+q <float> x 12  Magnetometer calibration Matrix and offset data;
+
+Three values which are the ag Offset for  X,Y & Z
+followed by 9 values which form a 3x3 Matrix
+
+Q  <float> x 3  Latest raw (uncalibrated) Magnetometer values (x/y/z)
+These are stored and later used to determine the x/y/z ofsets and
+calibration matrix.
+
+s (lower case) <int> <float> <float>
+Response scaling mode (0 is linear, 1 is exponential) followed by
+pitch scaling and then yaw scaling
+
+p <int>   1 indicated arduino is Polling sensors, 0 indicated using
+interrupts
+
+# <int>  Auto recenter mode;
+0= offset
+1= Soft
+2=Medium
+3=Hard
+
+I  <string> Info about current sketch version etc.
+NB This message is send by Arduino once auto calibration is complete (no
+longer too busy to talk to UI)
+
+D <float> < float>    Yaw Drift followed by current Yaw Drift Compensation
+
+T <float>   Sensor  temperature reading.
+
+O <int>  Device Orientation;
+0 Top/USB Right
+1 Top/USB Front
+2 Top/USB Left
+3 Top/USB Rear
+4 Left/USB Down
+5 Right/USB Down
+
+NB After receiving one of these 'orientation changed' messages the UI has
+to apply
+a rotation to the raw mag calibration matrix and push that matrix back up
+to the Arduino
+
+R Device has recentered
+
+B   <int> x6   CUrremt gyro and acceleromter bias values;
+Gyro Bias X, Y Z
+Accel  Bias X, Y Z
+
+None of the above;
+
+If a line is recieved over serial which does not start with a command then
+it will be a 'live data' message;
+<float> x3  Yaw/Pitch/Roll
+<int>   x3 Accelerometer X/Y/Z
+<float> x3 gyro X/Y/Z
+
+These pitch and yaw values are used to rotate the UI Head.
+
+
+
+On 15 September 2015 at 16:04, Rob <pocketmoon@gmail.com> wrote:
+
+>
+> Hi David,
+>
+> Ooh, close. I guess that's why Processing isn't used more for proper cross
+> platform apps. If you're making progress with the native app I'd stick with
+> that.
+>
+> I'll spend some time later to write up the list of commands that flow
+> between the UI and the Arduino with a description of that data that gets
+> returned and drop it to you.
+>
+> Cheers,
+>
+> Rob
+>
+>
+> On 15 September 2015 at 15:02, David Henderson <dh219@aibs.org.uk> wrote:
+>
+>> Hi again Rob,
+>>
+>> Quick update on my findings last night.
+>>
+>> The Processing project loaded up and ran at the first time of asking. The
+>> 3D head flickers like no-one's business, but other than that it seemed to
+>> connect to the arduino and extract data without problem.
+>>
+>> The issue came when trying to compile a release version -- serial access
+>> caused it to freeze on startup. Apparently this is a bug in Processing
+>> 2.2.1 for OSX which was not present in 2.1.2. Alas 2.1.2's no longer
+>> available for download.
+>>
+>> 2.2.1 is Java 1.7 so I thought I'd see if I could get it workign in
+>> Processing 3, which uses Java 1.8.
+>>
+>> There's been a change somewhere (either in Java itself or in the libs)
+>> that a PApplet can no longer be a parameter to add() (needs a Component
+>> type), but that was the only problem. I tried just commenting that out for
+>> now and the program could run and seemingly behave normally although
+>> couldn't be properly terminated (presumably as it didn't have a reference
+>> to the secondApplet).
+>>
+>> Unfortuntely I saw the same behaviour on export as I had in 2.2.1, so
+>> either this bug is still firmly in place in the Processing libraries, or
+>> that missing reference to the secondApplet is causing different behaviour
+>> outside of the IDE.
+>>
+>> Changing tack, I went back to my native Mac test project and added some
+>> basic support for talking to the serial port and having got it to the stage
+>> of exchanging greetings, thought I'd call that a night.
+>>
+>> Next I'll see if I can produce debugging output for the various serial
+>> line cases I can see listed in the java program unless you think it'd be
+>> worth persisting with the conversion to Processing v3?
+>>
+>> I've not followed through all the logic as to what gets sent back to the
+>> Arduino or the maths behind it as yet.
+>>
+>> Regards,
+>>
+>> David.
+>>
+>> On Mon, 14 Sep 2015, Rob wrote:
+>>
+>> Hi David,
+>>>
+>>> I've attached a zip with the old processing project (main file is
+>>> EDTrackerUtil221pde)
+>>>
+>>> It kinda works on Windows with a new EDTracker 9150  - I get a moving
+>>> head
+>>> and some raw data being displayed so if that works in any way on Mac then
+>>> it's a good start and we can have a crack at updating.
+>>>
+>>> Cheers,
+>>>
+>>> Rob
+>>>
+>>> Inline images 1
+>>>
+>>> On 14 September 2015 at 17:11, David Henderson <dh219@aibs.org.uk>
+>>> wrote:
+>>>       Hi Rob,
+>>>
+>>>       I'll have a crack at setting up the processing IDE and
+>>>       dependencies this evening. Downloaded the linux version quickly
+>>>       at work and I can see where Arduino gets the name sketch from!
+>>>
+>>>       If you can let me have the project file(s), I'll see how far I
+>>>       can get with it.
+>>>
+>>>       Many thanks,
+>>>
+>>>       David.
+>>>
+>>>       --
+>>>       David.
+>>>       d.henderson.96@cantab.net                   Mobile:   07950
+>>>       389353
+>>>
+>>>
+>>>
+>>>
+>>>
+>> --
+>> David.
+>> d.henderson.96@cantab.net                   Mobile:   07950 389353
+>>
+>
+>
+
+--001a11c1b8fea1b052051fd98ffb
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br></div><div>Bit of a brain dump but here goes;</di=
+v><div><br></div><div><br></div><div>All messages are asynchronous. E.g. th=
+e UI will ask the EDTracker to recenter by sending an R</div><div>The Ardui=
+no will recenter and then send an R back to the UI at which point the UI kn=
+ows that=C2=A0</div><div>recentering is complete.</div><div><br></div><div>=
+This is the same for the majority of commands. The UI doesn&#39;t change st=
+ate when it send the command =C2=A0it only changes when it gets the respons=
+e from the Arduino.</div><div><br></div><div>Floating point values are exch=
+anged as fixed point integers (int16).=C2=A0</div><div>So there are places =
+below where a float will be multiplied then cast as an int16 and split into=
+ two bytes for transmission.</div><div><br></div><div>I can can into detail=
+s on the calibration maths after you&#39;ve had a chance to digest this lot=
+.</div><div><br></div><div><br></div><div><u><b>Messages From UI to Arduino=
+</b></u></div><div><br></div><div>H Hello - prompt the arduino to say Hello=
+ back.=C2=A0</div><div>V Verbose - turns on serial output from Arduino</div=
+><div>I Info - arduino sends basic sketch/config data back to UI</div><div>=
+S sshhh =C2=A0tells the Arduino to stop talking over serial.=C2=A0 Sent by =
+UI when minimised or closed.</div><div><br></div><div>B Calc Bias values. T=
+ells Arduino to calculate gyro/accel bias values.</div><div>t =C2=A0Tell ar=
+duino to toggle response mode (linear , exponential).=C2=A0</div><div>p =C2=
+=A0Tell arduino to toggle polling/interrupt mode</div><div>0 (zero) Restore=
+ Factory settings on Arduino.</div><div><br></div><div>M/m =C2=A0Increment/=
+Decrement gyro x axis bias</div><div>N/n =C2=A0 Increment/Decrement gyro y =
+axis bias</div><div>O/o =C2=A0Increment/Decrement gyro z axis bias</div><di=
+v><br></div><div>j/J<span class=3D"" style=3D"white-space:pre">	</span>Incr=
+ement/Decrement accel x axis bias</div><div>k/K<span class=3D"" style=3D"wh=
+ite-space:pre">	</span>Increment/Decrement accel y axis bias</div><div>l/L<=
+span class=3D"" style=3D"white-space:pre">	</span>Increment/Decrement accel=
+ z axis bias</div><div><br></div><div>c/C Nudge yaw scale down by either 0.=
+25 =C2=A0or 1.0</div><div>d/G Nudge yaw scale up by either 0.25 =C2=A0or 1.=
+0</div><div><br></div><div>e/E Nudge pitch scale down by either 0.25 =C2=A0=
+or 1.0</div><div>f/F Nudge pitcg scale up by either 0.25 =C2=A0or 1.0</div>=
+<div><br></div><div>R<span class=3D"" style=3D"white-space:pre">	</span>Rec=
+entre View</div><div>#<span class=3D"" style=3D"white-space:pre">	</span>To=
+ggle autocentre behaviour (6050 only)</div><div><br></div><div>D <span clas=
+s=3D"" style=3D"white-space:pre">	</span>Save current drift compensation (6=
+050 only)</div><div>P<span class=3D"" style=3D"white-space:pre">	</span>Tog=
+gle orientation (increments 0 to 6 then wraps back to 0 - see below)</div><=
+div>A/a =C2=A0 Nudge Drift Compensation up/down</div><div><br></div><div>C =
+&lt;int16&gt;x3 encoded as 6 bytes followed by a terminator (10)</div><div>=
+(yawscale * 256)</div><div>(pitchscale*256)</div><div>(Low Pass Filter * 32=
+7.67)</div><div>10</div><div><br></div><div>$ =C2=A0 =C2=A0 &lt;int16&gt; x=
+ 21</div><div>The biggie! This send two 3x3 matrices followed by 3 mag offs=
+et values (x,y,z)</div><div>The values are all floats encoded as fixed poin=
+t int16s (two bytes),i.e the=C2=A0</div><div>float values are muiltiplied b=
+y a fixed value then cast as int16.</div><div><br></div><div>&lt;int16&gt;x=
+3 Mag Offsets for x,y,z =C2=A0( float multiplied by 64)</div><div>&lt;int16=
+&gt;x9 Orientated Mag Calibration Matrix ( float multiplied by 8192)</div><=
+div>&lt;int16&gt;x9 UnOrientated Mag Calibration Matrix ( float multiplied =
+by 8192)</div><div><br></div><div><br></div><div><b><u>Messages From Arduin=
+o to UI</u></b></div><div><br></div><div>S<span class=3D"" style=3D"white-s=
+pace:pre">	</span>Indicates Arduino is in silent mode (no serial output).</=
+div><div>H =C2=A0 Hello from Arduino.=C2=A0 UI then sends a V (to put it in=
+to Verbose mode and I to get basic info</div><div>h =C2=A0 Hello from Ardui=
+no while it&#39;s auto calibration (Hi but I&#39;m busy...)</div><div><br><=
+/div><div>a =C2=A0 bias adjust enabled for all axis</div><div>x =C2=A0 bias=
+ adjust only enabled for x axis</div><div>y<span class=3D"" style=3D"white-=
+space:pre">	</span>bias adjust only enabled for y axis</div><div>z<span cla=
+ss=3D"" style=3D"white-space:pre">	</span>bias adjust only enabled for z ax=
+is</div><div><br></div><div>V =C2=A0 Inidcates Arduino now in Verbose mode =
+and talking to UI</div><div><br></div><div>Messages that Return Data From A=
+rduino. Data is tab separated</div><div><br></div><div>M<span class=3D"" st=
+yle=3D"white-space:pre">	</span>&lt;string&gt; <span class=3D"" style=3D"wh=
+ite-space:pre">	</span>Generic message from Arduino (single string)</div><d=
+iv><br></div><div>q<span class=3D"" style=3D"white-space:pre">	</span>&lt;f=
+loat&gt; x 12 =C2=A0Magnetometer calibration Matrix and offset data;</div><=
+div><br></div><div>Three values which are the ag Offset for =C2=A0X,Y &amp;=
+ Z =C2=A0</div><div>followed by 9 values which form a 3x3 Matrix</div><div>=
+<br></div><div>Q =C2=A0&lt;float&gt; x 3 =C2=A0Latest raw (uncalibrated) Ma=
+gnetometer values (x/y/z)</div><div>These are stored and later used to dete=
+rmine the x/y/z ofsets and calibration matrix.</div><div><br></div><div>s (=
+lower case) &lt;int&gt; &lt;float&gt; &lt;float&gt;=C2=A0</div><div>Respons=
+e scaling mode (0 is linear, 1 is exponential) followed by=C2=A0</div><div>=
+pitch scaling and then yaw scaling</div><div><br></div><div>p &lt;int&gt; =
+=C2=A0 1 indicated arduino is Polling sensors, 0 indicated using interrupts=
+</div><div><br></div><div># &lt;int&gt; =C2=A0Auto recenter mode;=C2=A0</di=
+v><div>0=3D offset</div><div>1=3D Soft</div><div>2=3DMedium</div><div>3=3DH=
+ard</div><div><br></div><div>I =C2=A0&lt;string&gt; Info about current sket=
+ch version etc.=C2=A0</div><div>NB This message is send by Arduino once aut=
+o calibration is complete (no longer too busy to talk to UI)</div><div><br>=
+</div><div>D &lt;float&gt; &lt; float&gt; =C2=A0 =C2=A0Yaw Drift followed b=
+y current Yaw Drift Compensation</div><div><br></div><div>T &lt;float&gt; =
+=C2=A0 Sensor =C2=A0temperature reading.</div><div><br></div><div>O &lt;int=
+&gt; =C2=A0Device Orientation;</div><div>0<span class=3D"" style=3D"white-s=
+pace:pre">	</span>Top/USB Right</div><div>1<span class=3D"" style=3D"white-=
+space:pre">	</span>Top/USB Front</div><div>2<span class=3D"" style=3D"white=
+-space:pre">	</span>Top/USB Left</div><div>3<span class=3D"" style=3D"white=
+-space:pre">	</span>Top/USB Rear</div><div>4<span class=3D"" style=3D"white=
+-space:pre">	</span>Left/USB Down</div><div>5<span class=3D"" style=3D"whit=
+e-space:pre">	</span>Right/USB Down=C2=A0</div><div><br></div><div>NB After=
+ receiving one of these &#39;orientation changed&#39; messages the UI has t=
+o apply=C2=A0</div><div>a rotation to the raw mag calibration matrix and pu=
+sh that matrix back up to the Arduino</div><div><br></div><div>R<span class=
+=3D"" style=3D"white-space:pre">	</span>Device has recentered</div><div><br=
+></div><div>B =C2=A0 &lt;int&gt; x6 =C2=A0 CUrremt gyro and acceleromter bi=
+as values;</div><div>Gyro Bias X, Y Z</div><div>Accel =C2=A0Bias X, Y Z</di=
+v><div><br></div><div>None of the above;</div><div><br></div><div>If a line=
+ is recieved over serial which does not start with a command then</div><div=
+>it will be a &#39;live data&#39; message;</div><div>&lt;float&gt; x3 =C2=
+=A0Yaw/Pitch/Roll</div><div>&lt;int&gt; =C2=A0 x3<span class=3D"" style=3D"=
+white-space:pre">	</span>Accelerometer X/Y/Z</div><div>&lt;float&gt; x3<spa=
+n class=3D"" style=3D"white-space:pre">	</span>gyro X/Y/Z</div><div><br></d=
+iv><div>These pitch and yaw values are used to rotate the UI Head.</div><di=
+v><br></div><div><br></div></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On 15 September 2015 at 16:04, Rob <span dir=3D"ltr">&lt;<=
+a href=3D"mailto:pocketmoon@gmail.com" target=3D"_blank">pocketmoon@gmail.c=
+om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"=
+><div><br></div>Hi David,<div><br></div><div>Ooh, close. I guess that&#39;s=
+ why Processing isn&#39;t used more for proper cross platform apps. If you&=
+#39;re making progress with the native app I&#39;d stick with that.</div><d=
+iv><br></div><div>I&#39;ll spend some time later to write up the list of co=
+mmands that flow between the UI and the Arduino with a description of that =
+data that gets returned and drop it to you.</div><div><br></div><div>Cheers=
+,</div><div><br></div><div>Rob</div><div><div class=3D"h5"><div><br></div><=
+div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 15 September 20=
+15 at 15:02, David Henderson <span dir=3D"ltr">&lt;<a href=3D"mailto:dh219@=
+aibs.org.uk" target=3D"_blank">dh219@aibs.org.uk</a>&gt;</span> wrote:<br><=
+blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
+ #ccc solid;padding-left:1ex">Hi again Rob,<br>
+<br>
+Quick update on my findings last night.<br>
+<br>
+The Processing project loaded up and ran at the first time of asking. The 3=
+D head flickers like no-one&#39;s business, but other than that it seemed t=
+o connect to the arduino and extract data without problem.<br>
+<br>
+The issue came when trying to compile a release version -- serial access ca=
+used it to freeze on startup. Apparently this is a bug in Processing 2.2.1 =
+for OSX which was not present in 2.1.2. Alas 2.1.2&#39;s no longer availabl=
+e for download.<br>
+<br>
+2.2.1 is Java 1.7 so I thought I&#39;d see if I could get it workign in Pro=
+cessing 3, which uses Java 1.8.<br>
+<br>
+There&#39;s been a change somewhere (either in Java itself or in the libs) =
+that a PApplet can no longer be a parameter to add() (needs a Component typ=
+e), but that was the only problem. I tried just commenting that out for now=
+ and the program could run and seemingly behave normally although couldn&#3=
+9;t be properly terminated (presumably as it didn&#39;t have a reference to=
+ the secondApplet).<br>
+<br>
+Unfortuntely I saw the same behaviour on export as I had in 2.2.1, so eithe=
+r this bug is still firmly in place in the Processing libraries, or that mi=
+ssing reference to the secondApplet is causing different behaviour outside =
+of the IDE.<br>
+<br>
+Changing tack, I went back to my native Mac test project and added some bas=
+ic support for talking to the serial port and having got it to the stage of=
+ exchanging greetings, thought I&#39;d call that a night.<br>
+<br>
+Next I&#39;ll see if I can produce debugging output for the various serial =
+line cases I can see listed in the java program unless you think it&#39;d b=
+e worth persisting with the conversion to Processing v3?<br>
+<br>
+I&#39;ve not followed through all the logic as to what gets sent back to th=
+e Arduino or the maths behind it as yet.<br>
+<br>
+Regards,<br>
+<br>
+David.<span><br>
+<br>
+On Mon, 14 Sep 2015, Rob wrote:<br>
+<br>
+</span><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><span>
+Hi David,<br>
+<br>
+I&#39;ve attached a zip with the old processing project (main file is<br>
+EDTrackerUtil221pde)=C2=A0<br>
+<br>
+It kinda works on Windows with a new EDTracker 9150 =C2=A0- I get a moving =
+head<br>
+and some raw data being displayed so if that works in any way on Mac then<b=
+r>
+it&#39;s a good start and we can have a crack at updating.<br>
+<br>
+Cheers,<br>
+<br>
+Rob<br>
+<br></span><span>
+Inline images 1<br>
+<br>
+On 14 September 2015 at 17:11, David Henderson &lt;<a href=3D"mailto:dh219@=
+aibs.org.uk" target=3D"_blank">dh219@aibs.org.uk</a>&gt; wrote:<br>
+=C2=A0 =C2=A0 =C2=A0 Hi Rob,<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 I&#39;ll have a crack at setting up the processing IDE=
+ and<br>
+=C2=A0 =C2=A0 =C2=A0 dependencies this evening. Downloaded the linux versio=
+n quickly<br>
+=C2=A0 =C2=A0 =C2=A0 at work and I can see where Arduino gets the name sket=
+ch from!<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 If you can let me have the project file(s), I&#39;ll s=
+ee how far I<br>
+=C2=A0 =C2=A0 =C2=A0 can get with it.<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 Many thanks,<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 David.<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 --<br>
+=C2=A0 =C2=A0 =C2=A0 David.<br>
+=C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:d.henderson.96@cantab.net" target=3D=
+"_blank">d.henderson.96@cantab.net</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Mobile:=C2=A0 =C2=A007950<br>
+=C2=A0 =C2=A0 =C2=A0 389353<br>
+<br>
+<br>
+<br>
+<br>
+</span></blockquote><div><div>
+<br>
+-- <br>
+David.<br>
+<a href=3D"mailto:d.henderson.96@cantab.net" target=3D"_blank">d.henderson.=
+96@cantab.net</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0Mobile:=C2=A0 =C2=A007950 389353<br>
+</div></div></blockquote></div><br></div></div></div></div>
+</blockquote></div><br></div>
+
+--001a11c1b8fea1b052051fd98ffb--

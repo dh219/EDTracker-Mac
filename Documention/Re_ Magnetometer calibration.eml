@@ -1,0 +1,324 @@
+Return-path: <pocketmoon@gmail.com>
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on gin.aibs.org.uk
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.0 required=6.0 tests=BAYES_50,FREEMAIL_FROM,
+	HTML_MESSAGE,T_DKIM_INVALID,URIBL_BLOCKED autolearn=no version=3.3.2
+Envelope-to: dh219@aibs.org.uk
+Delivery-date: Mon, 05 Oct 2015 15:56:48 +0000
+Received: from mail-lb0-f181.google.com ([209.85.217.181])
+	by gin.aibs.org.uk with esmtps (TLS1.2:RSA_ARCFOUR_SHA1:128)
+	(Exim 4.80)
+	(envelope-from <pocketmoon@gmail.com>)
+	id 1Zj887-00044j-TI
+	for dh219@aibs.org.uk; Mon, 05 Oct 2015 15:56:48 +0000
+Received: by lbbwt4 with SMTP id wt4so22931887lbb.1
+        for <dh219@aibs.org.uk>; Mon, 05 Oct 2015 08:56:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :content-type;
+        bh=OdWJsRoOPmexGPP/jSs8+KHHWKFR+dq3upTPFLNzeus=;
+        b=gIMBxXsx0FQEBQqUsgzCZREctBvfw3lZSDE/OYaF0PjxMdSQj3rwZugCf1tjUXcog8
+         vfK0gGl3mxh2cTtS0jwlVH+/hSiLRIoPuNxrMce6oFaB9RHaCHQhEqShP+5tqqg75aTU
+         GevPucxFX6oHCTODavTiDHiTaS137Ve6HOd1VJKTdAmz6boFkOI2bJRyVJKEWA0dboxF
+         YlY4yOL4j76JCV9Ksg5ENUL9MtKfwtbAHkFdPXSA1JT1B1eyP58eAASDDVPle9fJp0wP
+         HA9qA1zYMIzphd/zc5Gut9CgcxVJmbv0zRehGHENZbnUSec4E2Plnlk/Z55UzZTe3ZIm
+         lU2w==
+MIME-Version: 1.0
+X-Received: by 10.112.128.227 with SMTP id nr3mr12052763lbb.42.1444060599585;
+ Mon, 05 Oct 2015 08:56:39 -0700 (PDT)
+Received: by 10.25.212.83 with HTTP; Mon, 5 Oct 2015 08:56:39 -0700 (PDT)
+In-Reply-To: <8E34ADC3-1C99-4D14-97E5-C7CF1C450619@aibs.org.uk>
+References: <3CFD4D23-C894-4927-BACD-1F8A8B4BEF46@aibs.org.uk>
+	<CACZiRSJKiO3v5tE9Ov8P-DNn9jf1hQHDtVVe1P4uS11Jzph6gg@mail.gmail.com>
+	<8E34ADC3-1C99-4D14-97E5-C7CF1C450619@aibs.org.uk>
+Date: Mon, 5 Oct 2015 16:56:39 +0100
+Message-ID: <CACZiRSJwvAv_1izAc1oii81kD7T5HwYggULunKajeoHBJJTn1A@mail.gmail.com>
+Subject: Re: Magnetometer calibration
+From: Rob <pocketmoon@gmail.com>
+To: David Henderson <dh219@aibs.org.uk>
+Content-Type: multipart/alternative; boundary=047d7b3a834a12947705215d8f18
+
+--047d7b3a834a12947705215d8f18
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+He's up at Warwick - which is being sensible and only having a freshers
+weekend rather than 2 weeks of boozing it up :)
+
+The Q values are raw magnetometer readings (straight off the chip) and are
+short ints (signed 16 bit values).  The maximum depends on the magnetometer
+gain which we set fairly low in the sketch.
+
+These raw values have to be calibrated and then rotated to match the
+overall orientation.
+
+If you plotted the raw values in 3d they form a distorted, off centre
+sphere.  So calibration does two things;
+1) Calculate x, y and z offsets to bring the data back to the origin
+2) scale the values so they then form a nice sphere
+
+The first bit is easy; just take a few hundred samples while twirling the
+tracker  and the offsets are;
+offsetx =3D (maxX + minX) /2
+
+These offsets are the first thing the  firmware applies to the raw mag
+values.
+
+The next step is to apply a 3x3 transformation matrix that combines both
+the scaling step (to make a sphere) and the user orientation step.   If we
+ignore the scaling and just look at orientation alone then one of the
+mounting options (TOP/USB to the Left)  is going to give a unit matrix;
+
+1 0 0
+0 1 0
+0 0 1
+
+This in effect does nothing when applied to the mag values, e.g. rotation
+of 0 degrees and a a scaling of 1.0
+
+So if you determine the x/y/z offsets, set both the raw matrix (which will
+eventually hold the raw mag scaling values)  and the orientated matrix to
+the above values and push that the the tracker (using the $ command) then
+you should get a functional EDTracker.
+
+You can always check what offset and matrix values the tracker has by
+sending an I command which reports stuff including the orientated and  raw
+matrix followed by the offsets.
+
+The offsets are the basic orientation are the things here and are critical
+to getting a 'tilt compensated' heading, i.e. a compass heading that's
+correct even when looking up or down.
+
+Once that's working then we can go through the values needed for
+orientation (usb right, usb rear, etc) and then the final 'scaling' bits.
+
+Cheers,
+
+Rob
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+On 4 October 2015 at 21:01, David Henderson <dh219@aibs.org.uk> wrote:
+
+> Rob,
+>
+> No worries, sounds like you=E2=80=99ve had busy weekend! First week of Oc=
+tober=E2=80=99s a
+> bit late for for a ten-week term. Oxbridge is he?
+>
+> I=E2=80=99ve not been able to do any more work on it today, but I do need=
+ to do a
+> full refactor as I=E2=80=99ve been learning Cocoa (and to a certain exten=
+t GUI)
+> coding on the fly and everything=E2=80=99s a bit how you doin=E2=80=99. I=
+=E2=80=99ll be having
+> something to get on with anyway, if you=E2=80=99re tied up.
+>
+> All the best,
+>
+> David.
+> --
+> 07950 389353
+>
+>
+>
+>
+> > On 3 Oct 2015, at 21:46, Rob <pocketmoon@gmail.com> wrote:
+> >
+> > Hi David,
+> >
+> > Yeah all good.Back home after a busy day -  dropped my eldest off an Un=
+i
+> for his first term. He's not yet called asking for more money so so far s=
+o
+> good!
+> >
+> > Will sit down with some coffee tomorrow morning and fill in some of the
+> blanks for you :)
+> >
+> > Cheers,
+> >
+> > Rob
+> >
+> >
+> >
+> > On 3 October 2015 at 12:09, David Henderson <dh219@aibs.org.uk> wrote:
+> > Hi Rob,
+> >
+> > I=E2=80=99ve been adding a 3D visualisation window to the software so I=
+ can get
+> a bit of a handle on the calibration.
+> >
+> > I=E2=80=99ve taken a punt that the output from the Q line is going to p=
+lay a
+> part and have started plotting its output. I=E2=80=99m guessing there=E2=
+=80=99ll be some
+> kind of analysis done of the points to establish the shape/offset of the
+> spheroid produced and that the magnetometer calibration matrix will
+> describe a transformation from this rugby ball back to a sphere, or vice
+> versa?
+> >
+> > So far I=E2=80=99ve only got to the recording and display stage pending=
+ your
+> input, but do let me know if I=E2=80=99m barking up the wrong tree, also =
+can you
+> let me know what the range of these Q values can be? Is it +/- 256? The
+> highest I=E2=80=99ve seen have been in the 140s.
+> >
+> > I=E2=80=99ve had feedback from one forum member that the first alpha ha=
+s been
+> able to pick up and display output from his edtracker, albeit on a more
+> recent OS than mine (I=E2=80=99m on OS X 10.10, he was 10.11). I=E2=80=99=
+m more concerned
+> about how far back it=E2=80=99s able to run though as Apple seems to depr=
+ecate or
+> replace large swathes of its API with irritating frequency!
+> >
+> > Hope all=E2=80=99s well,
+> >
+> > David.
+> > --
+> > 07950 389353
+> >
+> >
+> >
+> > <Screen Shot 2015-10-03 at 11.58.17.png>
+> >
+>
+>
+
+--047d7b3a834a12947705215d8f18
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">He&#39;s up at Warwick - which is being sensible and only =
+having a freshers weekend rather than 2 weeks of boozing it up :)<div><br><=
+/div><div>The Q values are raw magnetometer readings (straight off the chip=
+) and are short ints (signed 16 bit values).=C2=A0 The maximum depends on t=
+he magnetometer gain which we set fairly low in the sketch.</div><div><br><=
+/div><div>These raw values have to be calibrated and then rotated to match =
+the overall orientation.</div><div><br></div><div>If you plotted the raw va=
+lues in 3d they form a distorted, off centre sphere.=C2=A0 So calibration d=
+oes two things;</div><div>1) Calculate x, y and z offsets to bring the data=
+ back to the origin</div><div>2) scale the values so they then form a nice =
+sphere</div><div><br></div><div>The first bit is easy; just take a few hund=
+red samples while twirling the tracker =C2=A0and the offsets are;</div><div=
+>offsetx =3D (maxX + minX) /2=C2=A0</div><div><br></div><div>These offsets =
+are the first thing the =C2=A0firmware applies to the raw mag values.</div>=
+<div><br></div><div>The next step is to apply a 3x3 transformation matrix t=
+hat combines both the scaling step (to make a sphere) and the user orientat=
+ion step. =C2=A0 If we ignore the scaling and just look at orientation alon=
+e then one of the mounting options (TOP/USB to the Left) =C2=A0is going to =
+give a unit matrix;</div><div><br></div><div>1 0 0=C2=A0</div><div>0 1 0=C2=
+=A0</div><div>0 0 1</div><div><br></div><div>This in effect does nothing wh=
+en applied to the mag values, e.g. rotation of 0 degrees and a a scaling of=
+ 1.0</div><div><br></div><div>So if you determine the x/y/z offsets, set bo=
+th the raw matrix (which will eventually hold the raw mag scaling values) =
+=C2=A0and the orientated matrix to the above values and push that the the t=
+racker (using the $ command) then you should get a functional EDTracker.</d=
+iv><div><br></div><div>You can always check what offset and matrix values t=
+he tracker has by sending an I command which reports stuff including the or=
+ientated and =C2=A0raw matrix followed by the offsets.</div><div><br></div>=
+<div>The offsets are the basic orientation are the things here and are crit=
+ical to getting a &#39;tilt compensated&#39; heading, i.e. a compass headin=
+g that&#39;s correct even when looking up or down. =C2=A0</div><div><br></d=
+iv><div>Once that&#39;s working then we can go through the values needed fo=
+r orientation (usb right, usb rear, etc) and then the final &#39;scaling&#3=
+9; bits.</div><div><br></div><div>Cheers,</div><div><br></div><div>Rob</div=
+><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div=
+><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div=
+><div><br></div><div><br></div><div><br></div></div><div class=3D"gmail_ext=
+ra"><br><div class=3D"gmail_quote">On 4 October 2015 at 21:01, David Hender=
+son <span dir=3D"ltr">&lt;<a href=3D"mailto:dh219@aibs.org.uk" target=3D"_b=
+lank">dh219@aibs.org.uk</a>&gt;</span> wrote:<br><blockquote class=3D"gmail=
+_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
+1ex">Rob,<br>
+<br>
+No worries, sounds like you=E2=80=99ve had busy weekend! First week of Octo=
+ber=E2=80=99s a bit late for for a ten-week term. Oxbridge is he?<br>
+<br>
+I=E2=80=99ve not been able to do any more work on it today, but I do need t=
+o do a full refactor as I=E2=80=99ve been learning Cocoa (and to a certain =
+extent GUI) coding on the fly and everything=E2=80=99s a bit how you doin=
+=E2=80=99. I=E2=80=99ll be having something to get on with anyway, if you=
+=E2=80=99re tied up.<br>
+<br>
+All the best,<br>
+<br>
+David.<br>
+--<br>
+07950 389353<br>
+<span class=3D""><br>
+<br>
+<br>
+<br>
+&gt; On 3 Oct 2015, at 21:46, Rob &lt;<a href=3D"mailto:pocketmoon@gmail.co=
+m">pocketmoon@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi David,<br>
+&gt;<br>
+&gt; Yeah all good.Back home after a busy day -=C2=A0 dropped my eldest off=
+ an Uni for his first term. He&#39;s not yet called asking for more money s=
+o so far so good!<br>
+&gt;<br>
+&gt; Will sit down with some coffee tomorrow morning and fill in some of th=
+e blanks for you :)<br>
+&gt;<br>
+&gt; Cheers,<br>
+&gt;<br>
+&gt; Rob<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; On 3 October 2015 at 12:09, David Henderson &lt;<a href=3D"mailto:dh21=
+9@aibs.org.uk">dh219@aibs.org.uk</a>&gt; wrote:<br>
+&gt; Hi Rob,<br>
+&gt;<br>
+&gt; I=E2=80=99ve been adding a 3D visualisation window to the software so =
+I can get a bit of a handle on the calibration.<br>
+&gt;<br>
+&gt; I=E2=80=99ve taken a punt that the output from the Q line is going to =
+play a part and have started plotting its output. I=E2=80=99m guessing ther=
+e=E2=80=99ll be some kind of analysis done of the points to establish the s=
+hape/offset of the spheroid produced and that the magnetometer calibration =
+matrix will describe a transformation from this rugby ball back to a sphere=
+, or vice versa?<br>
+&gt;<br>
+&gt; So far I=E2=80=99ve only got to the recording and display stage pendin=
+g your input, but do let me know if I=E2=80=99m barking up the wrong tree, =
+also can you let me know what the range of these Q values can be? Is it +/-=
+ 256? The highest I=E2=80=99ve seen have been in the 140s.<br>
+&gt;<br>
+&gt; I=E2=80=99ve had feedback from one forum member that the first alpha h=
+as been able to pick up and display output from his edtracker, albeit on a =
+more recent OS than mine (I=E2=80=99m on OS X 10.10, he was 10.11). I=E2=80=
+=99m more concerned about how far back it=E2=80=99s able to run though as A=
+pple seems to deprecate or replace large swathes of its API with irritating=
+ frequency!<br>
+&gt;<br>
+&gt; Hope all=E2=80=99s well,<br>
+&gt;<br>
+&gt; David.<br>
+&gt; --<br>
+&gt; 07950 389353<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+</span>&gt; &lt;Screen Shot 2015-10-03 at 11.58.17.png&gt;<br>
+&gt;<br>
+<br>
+</blockquote></div><br></div>
+
+--047d7b3a834a12947705215d8f18--

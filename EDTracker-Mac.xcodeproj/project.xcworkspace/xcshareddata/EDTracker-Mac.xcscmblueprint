@@ -1,0 +1,40 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5A811E91F5DFF59170683E14D2C5755F19DE18CB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "d585612f-cdd8-4a53-8c99-01eb17128cf3" : {
+
+    },
+    "5A811E91F5DFF59170683E14D2C5755F19DE18CB" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "d585612f-cdd8-4a53-8c99-01eb17128cf3" : 0,
+    "5A811E91F5DFF59170683E14D2C5755F19DE18CB" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "83AC1474-E8D5-47A4-96A6-F9DFB40FB033",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "d585612f-cdd8-4a53-8c99-01eb17128cf3" : "Devel\/",
+    "5A811E91F5DFF59170683E14D2C5755F19DE18CB" : "Devel\/edtracker\/EDTracker-Mac\/Frameworks\/ORSSerialPort\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "EDTracker-Mac",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "edtracker\/EDTracker-Mac\/EDTracker-Mac.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/gin.aibs.org.uk\/usr\/local\/svn",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5A811E91F5DFF59170683E14D2C5755F19DE18CB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/armadsen\/ORSSerialPort.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5A811E91F5DFF59170683E14D2C5755F19DE18CB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/gin.aibs.org.uk\/usr\/local\/svn",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "d585612f-cdd8-4a53-8c99-01eb17128cf3"
+    }
+  ]
+}

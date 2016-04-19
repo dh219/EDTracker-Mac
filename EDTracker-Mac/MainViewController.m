@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "AppDelegate.h"
 @import ORSSerial;
 
 @interface MainViewController ()
@@ -36,7 +37,8 @@
 	
 	_serialController = [[SerialControl alloc] init];
 	_serialController.viewcontrol = self;
-
+	
+	[self activateButtons:false];
 }
 
 - (void)update {
@@ -100,6 +102,8 @@
 	[_magcal31 setFloatValue:[[self magcalmat] getElementi:3 j:1]];
 	[_magcal32 setFloatValue:[[self magcalmat] getElementi:3 j:2]];
 	[_magcal33 setFloatValue:[[self magcalmat] getElementi:3 j:3]];
+	
+	[_magpoints setIntegerValue:[_qpoints count]];
 
 }
 
@@ -140,12 +144,42 @@
 - (IBAction)GyroBias:(id)sender {
 	[_serialController SendCString:"r"];
 	// pop up progress pane
+	
+	if( !_pleasewaitsheet )
+		[NSBundle loadNibNamed:@"PleaseWait" owner:self];
+	[NSApp beginSheet:self.pleasewaitsheet
+	   modalForWindow:[[NSApp delegate] window]
+		modalDelegate:self
+	   didEndSelector:NULL
+		  contextInfo:NULL];
+	
+	[[self pinwheel] setHidden:NO];
+	[[self pinwheel] setIndeterminate:YES];
+	[[self pinwheel] setUsesThreadedAnimation:YES];
+	[[self pinwheel] startAnimation:nil];
+}
+
+-(IBAction)closePleaseWaitSheet:(id)sender {
+	if( self.pleasewaitsheet ) {
+		[NSApp endSheet:self.pleasewaitsheet];
+		[self.pleasewaitsheet close];
+		self.pleasewaitsheet = nil;
+	}
 }
 
 -(IBAction)UtilityButton:(id)sender {
 	[[_serialController port]sendData:[NSData dataWithBytes:"I" length:1]];
 	NSLog(@"Sent I");
 }
+
+- (IBAction)PauseQ:(id)sender {
+	[_qpoints setIspaused:![_qpoints ispaused]];
+}
+
+- (IBAction)ClearQList:(id)sender {
+	[_qpoints clearList];
+}
+
 - (IBAction)button:(id)sender {
 	NSString *s = [[self serialsend] stringValue];
 	[[_serialController port]sendData:[s dataUsingEncoding:NSUTF8StringEncoding]];
@@ -186,5 +220,19 @@
 	NSLog(@"Smooth: %.1f", _smoothing);
 	[_serialController writeScaleYaw:_yscale Pitch:_pscale Smoothing:_smoothing];
 }
+
+
+-(void)activateButtons:(BOOL)set {
+	[self.openbutton setEnabled:!set];
+	[self.closebutton setEnabled:set];
+	[self.orientbutton setEnabled:set];
+	[self.responsebutton setEnabled:set];
+	[self.yawstepper setEnabled:set];
+	[self.pitchstepper setEnabled:set];
+	[self.smoothslider setEnabled:set];
+	[self.recentrebutton setEnabled:set];
+	[self.biasbutton setEnabled:set];
+}
+
 
 @end

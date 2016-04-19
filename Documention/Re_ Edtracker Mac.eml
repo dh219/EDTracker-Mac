@@ -1,0 +1,791 @@
+Return-path: <pocketmoon@gmail.com>
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on gin.aibs.org.uk
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.0 required=6.0 tests=BAYES_50,FREEMAIL_FROM,
+	HTML_MESSAGE,T_DKIM_INVALID,URIBL_BLOCKED autolearn=no version=3.3.2
+Envelope-to: dh219@aibs.org.uk
+Delivery-date: Tue, 17 Nov 2015 13:36:17 +0000
+Received: from mail-lb0-f171.google.com ([209.85.217.171])
+	by gin.aibs.org.uk with esmtps (TLS1.2:RSA_ARCFOUR_SHA1:128)
+	(Exim 4.80)
+	(envelope-from <pocketmoon@gmail.com>)
+	id 1ZygQh-0006F6-Be
+	for dh219@aibs.org.uk; Tue, 17 Nov 2015 13:36:17 +0000
+Received: by lbblt2 with SMTP id lt2so5510262lbb.3
+        for <dh219@aibs.org.uk>; Tue, 17 Nov 2015 05:36:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :content-type;
+        bh=2WZtIVDP02HGoUAm+nBml1V8jz/9CobYH8Zqm7CDzGE=;
+        b=Q2YR50ZBzxEtvOD4ucAMzEVMzRhIutiif5ASPrGdec9NxPBvx9kIA6eHQi9v2NMbKB
+         bco/MyyiOyWhbCX3L5bVPnoewXYXZtDRPPp7FraKG16HroDaHrOJwKQzl+FfAu3E/jsT
+         PJHyJjj7EtzHbxnzk8Mqw4EMqeGhO/MWJW8dlc7aPp46lzh6dllL97O1/dESGZaqo9Cs
+         tP/Qu1S+ahYBvKPA4cSKbzwJUW/QFaShnpsv9tHYBpGtxiF1B4d/feR4Q4xzPshazyWS
+         Xtl+iQ8xitGnEHFoMLLV8ANmj7mkTfQS+XV8P5ng7kcgN2RdNaB2h1yf/Y3lIICrZjk2
+         R0FA==
+MIME-Version: 1.0
+X-Received: by 10.112.247.103 with SMTP id yd7mr19768302lbc.46.1447767363190;
+ Tue, 17 Nov 2015 05:36:03 -0800 (PST)
+Received: by 10.25.212.212 with HTTP; Tue, 17 Nov 2015 05:36:03 -0800 (PST)
+In-Reply-To: <9AC92035-79DD-4466-8AF9-F195CA7244DB@aibs.org.uk>
+References: <alpine.DEB.2.02.1509141605210.12312@gin.aibs.org.uk>
+	<CACZiRS+DVvdRRjZnCO6k3CJOiSss5BLPEHmcF=6zmT8MN0tWRA@mail.gmail.com>
+	<alpine.DEB.2.02.1509151343360.12312@gin.aibs.org.uk>
+	<CACZiRSLSWNYVDdCUfx3t9CrZdNxOix_+LinJdZY8b0ahnFit9w@mail.gmail.com>
+	<CACZiRSLh3O92ZqcGVDJGZnV+Hu_xU=n+PJ4YN2nuFT0epa4xfg@mail.gmail.com>
+	<9AC92035-79DD-4466-8AF9-F195CA7244DB@aibs.org.uk>
+Date: Tue, 17 Nov 2015 13:36:03 +0000
+Message-ID: <CACZiRSKyoXv9H1Cwyv4tw_nNjx6R4n9YdBB0Zx7RiQHMpORJxQ@mail.gmail.com>
+Subject: Re: Edtracker Mac
+From: Rob <pocketmoon@gmail.com>
+To: David Henderson <dh219@aibs.org.uk>
+Content-Type: multipart/alternative; boundary=001a1136022e6686bd0524bc9b14
+
+--001a1136022e6686bd0524bc9b14
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi David,
+
+Always wanted an observatory - too much light pollution where I live sadly
+:/
+
+The way I'm rotating the matrix is by first setting an orientation angle;
+
+              orientation =3D "Top/USB Right";
+              orientationAngle =3D Math.PI;
+
+              orientation =3D "Top/USB Front";
+              orientationAngle =3D 0.5 * Math.PI;
+
+              orientation =3D "Top/USB Left";
+              orientationAngle =3D 0.0;
+
+              orientation =3D "Top/USB Rear";
+              orientationAngle =3D -0.5 * Math.PI;
+
+So USB Left is a zero angle rotation which is why it's working for that one=
+.
+
+I'm constructing the rotation matrix like this, which rotates around the z
+axis;
+
+
+            var r =3D M.DenseOfColumnArrays(
+            new[] { new[] {Math.Cos(orientationAngle),
+ Math.Sin(orientationAngle), 0.0},
+                       new[] {-Math.Sin(orientationAngle),
+Math.Cos(orientationAngle),  0.0},
+                      new[] { 0.0,                                    0.0,
+                                   1.0}}
+                    );
+
+              magOrientated =3D rawMagCalibMatrix * r;
+
+If the EDTracker is level the mag heading should  work no matter that the
+rotation is. The reason for this rotation is to enable the tilt adjusted
+mag heading to work properly.   So you should see that the heading stays
+fairly constant when you tilt or roll the device.
+
+
+Cheers,
+
+Rob
+
+
+
+On 16 November 2015 at 21:49, David Henderson <dh219@aibs.org.uk> wrote:
+
+> Hi Rob,
+>
+> Sorry it=E2=80=99s been a while. I=E2=80=99ve been building an observator=
+y (well, a shed
+> with a retractable roof), which has sucked my time a bit. That and the fa=
+ct
+> I couldn=E2=80=99t work out how to stop a heinous memory leak in the matr=
+ix library
+> I=E2=80=99d built using NSMutableArrays and had to convert the lot. Bah.
+>
+> Anyway, I think I=E2=80=99m almost at beta stage, but have run into a pro=
+blem with
+> the rotation of the axes when sending back the $ string.
+>
+> Up until now I=E2=80=99ve been sending back a copy of the unrotated calib=
+ration
+> matrix which seems to work well enough for a top-left usb configuration
+> (O/2) but when I apply what I (perhaps naively) thought would be the
+> correct rotations to bring top-rear, top-right and top-front into play (9=
+0
+> degree around the Y axis each time), it all goes to pot. I=E2=80=99m wond=
+ering if
+> it was just luck that my magnetic calibration matrix was sufficiently clo=
+se
+> to unity for the O/2 case that I was getting away without knowing the
+> appropriate transform.
+>
+> I=E2=80=99d previously noticed there=E2=80=99s a discrepancy with the out=
+put axes and the
+> output accelerometer. Is this the source of my grief?
+>
+> Cheers,
+>
+> David.
+> --
+> 07950 389353
+>
+>
+>
+>
+> > On 16 Sep 2015, at 10:02, Rob <pocketmoon@gmail.com> wrote:
+> >
+> >
+> > Bit of a brain dump but here goes;
+> >
+> >
+> > All messages are asynchronous. E.g. the UI will ask the EDTracker to
+> recenter by sending an R
+> > The Arduino will recenter and then send an R back to the UI at which
+> point the UI knows that
+> > recentering is complete.
+> >
+> > This is the same for the majority of commands. The UI doesn't change
+> state when it send the command  it only changes when it gets the response
+> from the Arduino.
+> >
+> > Floating point values are exchanged as fixed point integers (int16).
+> > So there are places below where a float will be multiplied then cast as
+> an int16 and split into two bytes for transmission.
+> >
+> > I can can into details on the calibration maths after you've had a
+> chance to digest this lot.
+> >
+> >
+> > Messages From UI to Arduino
+> >
+> > H Hello - prompt the arduino to say Hello back.
+> > V Verbose - turns on serial output from Arduino
+> > I Info - arduino sends basic sketch/config data back to UI
+> > S sshhh  tells the Arduino to stop talking over serial.  Sent by UI whe=
+n
+> minimised or closed.
+> >
+> > B Calc Bias values. Tells Arduino to calculate gyro/accel bias values.
+> > t  Tell arduino to toggle response mode (linear , exponential).
+> > p  Tell arduino to toggle polling/interrupt mode
+> > 0 (zero) Restore Factory settings on Arduino.
+> >
+> > M/m  Increment/Decrement gyro x axis bias
+> > N/n   Increment/Decrement gyro y axis bias
+> > O/o  Increment/Decrement gyro z axis bias
+> >
+> > j/J   Increment/Decrement accel x axis bias
+> > k/K   Increment/Decrement accel y axis bias
+> > l/L   Increment/Decrement accel z axis bias
+> >
+> > c/C Nudge yaw scale down by either 0.25  or 1.0
+> > d/G Nudge yaw scale up by either 0.25  or 1.0
+> >
+> > e/E Nudge pitch scale down by either 0.25  or 1.0
+> > f/F Nudge pitcg scale up by either 0.25  or 1.0
+> >
+> > R     Recentre View
+> > #     Toggle autocentre behaviour (6050 only)
+> >
+> > D     Save current drift compensation (6050 only)
+> > P     Toggle orientation (increments 0 to 6 then wraps back to 0 - see
+> below)
+> > A/a   Nudge Drift Compensation up/down
+> >
+> > C <int16>x3 encoded as 6 bytes followed by a terminator (10)
+> > (yawscale * 256)
+> > (pitchscale*256)
+> > (Low Pass Filter * 327.67)
+> > 10
+> >
+> > $     <int16> x 21
+> > The biggie! This send two 3x3 matrices followed by 3 mag offset values
+> (x,y,z)
+> > The values are all floats encoded as fixed point int16s (two bytes),i.e
+> the
+> > float values are muiltiplied by a fixed value then cast as int16.
+> >
+> > <int16>x3 Mag Offsets for x,y,z  ( float multiplied by 64)
+> > <int16>x9 Orientated Mag Calibration Matrix ( float multiplied by 8192)
+> > <int16>x9 UnOrientated Mag Calibration Matrix ( float multiplied by 819=
+2)
+> >
+> >
+> > Messages From Arduino to UI
+> >
+> > S     Indicates Arduino is in silent mode (no serial output).
+> > H   Hello from Arduino.  UI then sends a V (to put it into Verbose mode
+> and I to get basic info
+> > h   Hello from Arduino while it's auto calibration (Hi but I'm busy...)
+> >
+> > a   bias adjust enabled for all axis
+> > x   bias adjust only enabled for x axis
+> > y     bias adjust only enabled for y axis
+> > z     bias adjust only enabled for z axis
+> >
+> > V   Inidcates Arduino now in Verbose mode and talking to UI
+> >
+> > Messages that Return Data From Arduino. Data is tab separated
+> >
+> > M     <string>        Generic message from Arduino (single string)
+> >
+> > q     <float> x 12  Magnetometer calibration Matrix and offset data;
+> >
+> > Three values which are the ag Offset for  X,Y & Z
+> > followed by 9 values which form a 3x3 Matrix
+> >
+> > Q  <float> x 3  Latest raw (uncalibrated) Magnetometer values (x/y/z)
+> > These are stored and later used to determine the x/y/z ofsets and
+> calibration matrix.
+> >
+> > s (lower case) <int> <float> <float>
+> > Response scaling mode (0 is linear, 1 is exponential) followed by
+> > pitch scaling and then yaw scaling
+> >
+> > p <int>   1 indicated arduino is Polling sensors, 0 indicated using
+> interrupts
+> >
+> > # <int>  Auto recenter mode;
+> > 0=3D offset
+> > 1=3D Soft
+> > 2=3DMedium
+> > 3=3DHard
+> >
+> > I  <string> Info about current sketch version etc.
+> > NB This message is send by Arduino once auto calibration is complete (n=
+o
+> longer too busy to talk to UI)
+> >
+> > D <float> < float>    Yaw Drift followed by current Yaw Drift
+> Compensation
+> >
+> > T <float>   Sensor  temperature reading.
+> >
+> > O <int>  Device Orientation;
+> > 0     Top/USB Right
+> > 1     Top/USB Front
+> > 2     Top/USB Left
+> > 3     Top/USB Rear
+> > 4     Left/USB Down
+> > 5     Right/USB Down
+> >
+> > NB After receiving one of these 'orientation changed' messages the UI
+> has to apply
+> > a rotation to the raw mag calibration matrix and push that matrix back
+> up to the Arduino
+> >
+> > R     Device has recentered
+> >
+> > B   <int> x6   CUrremt gyro and acceleromter bias values;
+> > Gyro Bias X, Y Z
+> > Accel  Bias X, Y Z
+> >
+> > None of the above;
+> >
+> > If a line is recieved over serial which does not start with a command
+> then
+> > it will be a 'live data' message;
+> > <float> x3  Yaw/Pitch/Roll
+> > <int>   x3    Accelerometer X/Y/Z
+> > <float> x3    gyro X/Y/Z
+> >
+> > These pitch and yaw values are used to rotate the UI Head.
+> >
+> >
+> >
+> > On 15 September 2015 at 16:04, Rob <pocketmoon@gmail.com> wrote:
+> >
+> > Hi David,
+> >
+> > Ooh, close. I guess that's why Processing isn't used more for proper
+> cross platform apps. If you're making progress with the native app I'd
+> stick with that.
+> >
+> > I'll spend some time later to write up the list of commands that flow
+> between the UI and the Arduino with a description of that data that gets
+> returned and drop it to you.
+> >
+> > Cheers,
+> >
+> > Rob
+> >
+> >
+> > On 15 September 2015 at 15:02, David Henderson <dh219@aibs.org.uk>
+> wrote:
+> > Hi again Rob,
+> >
+> > Quick update on my findings last night.
+> >
+> > The Processing project loaded up and ran at the first time of asking.
+> The 3D head flickers like no-one's business, but other than that it seeme=
+d
+> to connect to the arduino and extract data without problem.
+> >
+> > The issue came when trying to compile a release version -- serial acces=
+s
+> caused it to freeze on startup. Apparently this is a bug in Processing
+> 2.2.1 for OSX which was not present in 2.1.2. Alas 2.1.2's no longer
+> available for download.
+> >
+> > 2.2.1 is Java 1.7 so I thought I'd see if I could get it workign in
+> Processing 3, which uses Java 1.8.
+> >
+> > There's been a change somewhere (either in Java itself or in the libs)
+> that a PApplet can no longer be a parameter to add() (needs a Component
+> type), but that was the only problem. I tried just commenting that out fo=
+r
+> now and the program could run and seemingly behave normally although
+> couldn't be properly terminated (presumably as it didn't have a reference
+> to the secondApplet).
+> >
+> > Unfortuntely I saw the same behaviour on export as I had in 2.2.1, so
+> either this bug is still firmly in place in the Processing libraries, or
+> that missing reference to the secondApplet is causing different behaviour
+> outside of the IDE.
+> >
+> > Changing tack, I went back to my native Mac test project and added some
+> basic support for talking to the serial port and having got it to the sta=
+ge
+> of exchanging greetings, thought I'd call that a night.
+> >
+> > Next I'll see if I can produce debugging output for the various serial
+> line cases I can see listed in the java program unless you think it'd be
+> worth persisting with the conversion to Processing v3?
+> >
+> > I've not followed through all the logic as to what gets sent back to th=
+e
+> Arduino or the maths behind it as yet.
+> >
+> > Regards,
+> >
+> > David.
+> >
+> > On Mon, 14 Sep 2015, Rob wrote:
+> >
+> > Hi David,
+> >
+> > I've attached a zip with the old processing project (main file is
+> > EDTrackerUtil221pde)
+> >
+> > It kinda works on Windows with a new EDTracker 9150  - I get a moving
+> head
+> > and some raw data being displayed so if that works in any way on Mac th=
+en
+> > it's a good start and we can have a crack at updating.
+> >
+> > Cheers,
+> >
+> > Rob
+> >
+> > Inline images 1
+> >
+> > On 14 September 2015 at 17:11, David Henderson <dh219@aibs.org.uk>
+> wrote:
+> >       Hi Rob,
+> >
+> >       I'll have a crack at setting up the processing IDE and
+> >       dependencies this evening. Downloaded the linux version quickly
+> >       at work and I can see where Arduino gets the name sketch from!
+> >
+> >       If you can let me have the project file(s), I'll see how far I
+> >       can get with it.
+> >
+> >       Many thanks,
+> >
+> >       David.
+> >
+> >       --
+> >       David.
+> >       d.henderson.96@cantab.net                   Mobile:   07950
+> >       389353
+> >
+> >
+> >
+> >
+> >
+> > --
+> > David.
+> > d.henderson.96@cantab.net                   Mobile:   07950 389353
+> >
+> >
+>
+>
+
+--001a1136022e6686bd0524bc9b14
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi David,<div><br></div><div>Always wanted an observatory =
+- too much light pollution where I live sadly :/=C2=A0</div><div><br></div>=
+<div>The way I&#39;m rotating the matrix is by first setting an orientation=
+ angle;</div><div><br></div><div><div>=C2=A0 =C2=A0 =C2=A0=C2=A0=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 orientation =3D &quot;Top/USB Right&quot;;<br>=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 orientationAngle =3D Math.PI;<br><br=
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 orientation =3D &quot;Top=
+/USB Front&quot;;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 orien=
+tationAngle =3D 0.5 * Math.PI;<br><br></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 orientation =3D &quot;Top/USB Left&quot;;<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 orientationAngle =3D 0.0;<br>=
+<br></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 orientation=
+ =3D &quot;Top/USB Rear&quot;;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 orientationAngle =3D -0.5 * Math.PI;</div></div><div><br></div><div=
+>So USB Left is a zero angle rotation which is why it&#39;s working for tha=
+t one.</div><div><br></div><div>I&#39;m constructing the rotation matrix li=
+ke this, which rotates around the z axis;</div><div><br></div><div><div><br=
+></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 var r =3D M.DenseOfCo=
+lumnArrays(</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 new[] { new=
+[] {Math.Cos(orientationAngle), =C2=A0Math.Sin(orientationAngle), 0.0},=C2=
+=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0new[] {-Math.Sin(orientationAngle), Math.Cos(orient=
+ationAngle), =C2=A00.0}, =C2=A0</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 new[] { 0.0, =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A00.0, =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A01.0}}</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 );</div><div><br></div><div>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 magOrientated =3D rawMagCalibMatrix * r;=
+</div></div><div><br></div><div>If the EDTracker is level the mag heading s=
+hould =C2=A0work no matter that the rotation is. The reason for this rotati=
+on is to enable the tilt adjusted mag heading to work properly. =C2=A0 So y=
+ou should see that the heading stays fairly constant when you tilt or roll =
+the device.</div><div><br></div><div><br></div><div>Cheers,</div><div><br><=
+/div><div>Rob</div><div><br></div><div><br></div><div class=3D"gmail_extra"=
+><br><div class=3D"gmail_quote">On 16 November 2015 at 21:49, David Henders=
+on <span dir=3D"ltr">&lt;<a href=3D"mailto:dh219@aibs.org.uk" target=3D"_bl=
+ank">dh219@aibs.org.uk</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-=
+color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">Hi Rob,<br=
+>
+<br>
+Sorry it=E2=80=99s been a while. I=E2=80=99ve been building an observatory =
+(well, a shed with a retractable roof), which has sucked my time a bit. Tha=
+t and the fact I couldn=E2=80=99t work out how to stop a heinous memory lea=
+k in the matrix library I=E2=80=99d built using NSMutableArrays and had to =
+convert the lot. Bah.<br>
+<br>
+Anyway, I think I=E2=80=99m almost at beta stage, but have run into a probl=
+em with the rotation of the axes when sending back the $ string.<br>
+<br>
+Up until now I=E2=80=99ve been sending back a copy of the unrotated calibra=
+tion matrix which seems to work well enough for a top-left usb configuratio=
+n (O/2) but when I apply what I (perhaps naively) thought would be the corr=
+ect rotations to bring top-rear, top-right and top-front into play (90 degr=
+ee around the Y axis each time), it all goes to pot. I=E2=80=99m wondering =
+if it was just luck that my magnetic calibration matrix was sufficiently cl=
+ose to unity for the O/2 case that I was getting away without knowing the a=
+ppropriate transform.<br>
+<br>
+I=E2=80=99d previously noticed there=E2=80=99s a discrepancy with the outpu=
+t axes and the output accelerometer. Is this the source of my grief?<br>
+<br>
+Cheers,<br>
+<br>
+David.<br>
+--<br>
+07950 389353<br>
+<br>
+<br>
+<br>
+<br>
+&gt; On 16 Sep 2015, at 10:02, Rob &lt;<a href=3D"mailto:pocketmoon@gmail.c=
+om" target=3D"_blank">pocketmoon@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt;<br>
+&gt; Bit of a brain dump but here goes;<br>
+&gt;<br>
+&gt;<br>
+&gt; All messages are asynchronous. E.g. the UI will ask the EDTracker to r=
+ecenter by sending an R<br>
+&gt; The Arduino will recenter and then send an R back to the UI at which p=
+oint the UI knows that<br>
+&gt; recentering is complete.<br>
+&gt;<br>
+&gt; This is the same for the majority of commands. The UI doesn&#39;t chan=
+ge state when it send the command=C2=A0 it only changes when it gets the re=
+sponse from the Arduino.<br>
+&gt;<br>
+&gt; Floating point values are exchanged as fixed point integers (int16).<b=
+r>
+&gt; So there are places below where a float will be multiplied then cast a=
+s an int16 and split into two bytes for transmission.<br>
+&gt;<br>
+&gt; I can can into details on the calibration maths after you&#39;ve had a=
+ chance to digest this lot.<br>
+&gt;<br>
+&gt;<br>
+&gt; Messages From UI to Arduino<br>
+&gt;<br>
+&gt; H Hello - prompt the arduino to say Hello back.<br>
+&gt; V Verbose - turns on serial output from Arduino<br>
+&gt; I Info - arduino sends basic sketch/config data back to UI<br>
+&gt; S sshhh=C2=A0 tells the Arduino to stop talking over serial.=C2=A0 Sen=
+t by UI when minimised or closed.<br>
+&gt;<br>
+&gt; B Calc Bias values. Tells Arduino to calculate gyro/accel bias values.=
+<br>
+&gt; t=C2=A0 Tell arduino to toggle response mode (linear , exponential).<b=
+r>
+&gt; p=C2=A0 Tell arduino to toggle polling/interrupt mode<br>
+&gt; 0 (zero) Restore Factory settings on Arduino.<br>
+&gt;<br>
+&gt; M/m=C2=A0 Increment/Decrement gyro x axis bias<br>
+&gt; N/n=C2=A0 =C2=A0Increment/Decrement gyro y axis bias<br>
+&gt; O/o=C2=A0 Increment/Decrement gyro z axis bias<br>
+&gt;<br>
+&gt; j/J=C2=A0 =C2=A0Increment/Decrement accel x axis bias<br>
+&gt; k/K=C2=A0 =C2=A0Increment/Decrement accel y axis bias<br>
+&gt; l/L=C2=A0 =C2=A0Increment/Decrement accel z axis bias<br>
+&gt;<br>
+&gt; c/C Nudge yaw scale down by either 0.25=C2=A0 or 1.0<br>
+&gt; d/G Nudge yaw scale up by either 0.25=C2=A0 or 1.0<br>
+&gt;<br>
+&gt; e/E Nudge pitch scale down by either 0.25=C2=A0 or 1.0<br>
+&gt; f/F Nudge pitcg scale up by either 0.25=C2=A0 or 1.0<br>
+&gt;<br>
+&gt; R=C2=A0 =C2=A0 =C2=A0Recentre View<br>
+&gt; #=C2=A0 =C2=A0 =C2=A0Toggle autocentre behaviour (6050 only)<br>
+&gt;<br>
+&gt; D=C2=A0 =C2=A0 =C2=A0Save current drift compensation (6050 only)<br>
+&gt; P=C2=A0 =C2=A0 =C2=A0Toggle orientation (increments 0 to 6 then wraps =
+back to 0 - see below)<br>
+&gt; A/a=C2=A0 =C2=A0Nudge Drift Compensation up/down<br>
+&gt;<br>
+&gt; C &lt;int16&gt;x3 encoded as 6 bytes followed by a terminator (10)<br>
+&gt; (yawscale * 256)<br>
+&gt; (pitchscale*256)<br>
+&gt; (Low Pass Filter * 327.67)<br>
+&gt; 10<br>
+&gt;<br>
+&gt; $=C2=A0 =C2=A0 =C2=A0&lt;int16&gt; x 21<br>
+&gt; The biggie! This send two 3x3 matrices followed by 3 mag offset values=
+ (x,y,z)<br>
+&gt; The values are all floats encoded as fixed point int16s (two bytes),i.=
+e the<br>
+&gt; float values are muiltiplied by a fixed value then cast as int16.<br>
+&gt;<br>
+&gt; &lt;int16&gt;x3 Mag Offsets for x,y,z=C2=A0 ( float multiplied by 64)<=
+br>
+&gt; &lt;int16&gt;x9 Orientated Mag Calibration Matrix ( float multiplied b=
+y 8192)<br>
+&gt; &lt;int16&gt;x9 UnOrientated Mag Calibration Matrix ( float multiplied=
+ by 8192)<br>
+&gt;<br>
+&gt;<br>
+&gt; Messages From Arduino to UI<br>
+&gt;<br>
+&gt; S=C2=A0 =C2=A0 =C2=A0Indicates Arduino is in silent mode (no serial ou=
+tput).<br>
+&gt; H=C2=A0 =C2=A0Hello from Arduino.=C2=A0 UI then sends a V (to put it i=
+nto Verbose mode and I to get basic info<br>
+&gt; h=C2=A0 =C2=A0Hello from Arduino while it&#39;s auto calibration (Hi b=
+ut I&#39;m busy...)<br>
+&gt;<br>
+&gt; a=C2=A0 =C2=A0bias adjust enabled for all axis<br>
+&gt; x=C2=A0 =C2=A0bias adjust only enabled for x axis<br>
+&gt; y=C2=A0 =C2=A0 =C2=A0bias adjust only enabled for y axis<br>
+&gt; z=C2=A0 =C2=A0 =C2=A0bias adjust only enabled for z axis<br>
+&gt;<br>
+&gt; V=C2=A0 =C2=A0Inidcates Arduino now in Verbose mode and talking to UI<=
+br>
+&gt;<br>
+&gt; Messages that Return Data From Arduino. Data is tab separated<br>
+&gt;<br>
+&gt; M=C2=A0 =C2=A0 =C2=A0&lt;string&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 Generic=
+ message from Arduino (single string)<br>
+&gt;<br>
+&gt; q=C2=A0 =C2=A0 =C2=A0&lt;float&gt; x 12=C2=A0 Magnetometer calibration=
+ Matrix and offset data;<br>
+&gt;<br>
+&gt; Three values which are the ag Offset for=C2=A0 X,Y &amp; Z<br>
+&gt; followed by 9 values which form a 3x3 Matrix<br>
+&gt;<br>
+&gt; Q=C2=A0 &lt;float&gt; x 3=C2=A0 Latest raw (uncalibrated) Magnetometer=
+ values (x/y/z)<br>
+&gt; These are stored and later used to determine the x/y/z ofsets and cali=
+bration matrix.<br>
+&gt;<br>
+&gt; s (lower case) &lt;int&gt; &lt;float&gt; &lt;float&gt;<br>
+&gt; Response scaling mode (0 is linear, 1 is exponential) followed by<br>
+&gt; pitch scaling and then yaw scaling<br>
+&gt;<br>
+&gt; p &lt;int&gt;=C2=A0 =C2=A01 indicated arduino is Polling sensors, 0 in=
+dicated using interrupts<br>
+&gt;<br>
+&gt; # &lt;int&gt;=C2=A0 Auto recenter mode;<br>
+&gt; 0=3D offset<br>
+&gt; 1=3D Soft<br>
+&gt; 2=3DMedium<br>
+&gt; 3=3DHard<br>
+&gt;<br>
+&gt; I=C2=A0 &lt;string&gt; Info about current sketch version etc.<br>
+&gt; NB This message is send by Arduino once auto calibration is complete (=
+no longer too busy to talk to UI)<br>
+&gt;<br>
+&gt; D &lt;float&gt; &lt; float&gt;=C2=A0 =C2=A0 Yaw Drift followed by curr=
+ent Yaw Drift Compensation<br>
+&gt;<br>
+&gt; T &lt;float&gt;=C2=A0 =C2=A0Sensor=C2=A0 temperature reading.<br>
+&gt;<br>
+&gt; O &lt;int&gt;=C2=A0 Device Orientation;<br>
+&gt; 0=C2=A0 =C2=A0 =C2=A0Top/USB Right<br>
+&gt; 1=C2=A0 =C2=A0 =C2=A0Top/USB Front<br>
+&gt; 2=C2=A0 =C2=A0 =C2=A0Top/USB Left<br>
+&gt; 3=C2=A0 =C2=A0 =C2=A0Top/USB Rear<br>
+&gt; 4=C2=A0 =C2=A0 =C2=A0Left/USB Down<br>
+&gt; 5=C2=A0 =C2=A0 =C2=A0Right/USB Down<br>
+&gt;<br>
+&gt; NB After receiving one of these &#39;orientation changed&#39; messages=
+ the UI has to apply<br>
+&gt; a rotation to the raw mag calibration matrix and push that matrix back=
+ up to the Arduino<br>
+&gt;<br>
+&gt; R=C2=A0 =C2=A0 =C2=A0Device has recentered<br>
+&gt;<br>
+&gt; B=C2=A0 =C2=A0&lt;int&gt; x6=C2=A0 =C2=A0CUrremt gyro and acceleromter=
+ bias values;<br>
+&gt; Gyro Bias X, Y Z<br>
+&gt; Accel=C2=A0 Bias X, Y Z<br>
+&gt;<br>
+&gt; None of the above;<br>
+&gt;<br>
+&gt; If a line is recieved over serial which does not start with a command =
+then<br>
+&gt; it will be a &#39;live data&#39; message;<br>
+&gt; &lt;float&gt; x3=C2=A0 Yaw/Pitch/Roll<br>
+&gt; &lt;int&gt;=C2=A0 =C2=A0x3=C2=A0 =C2=A0 Accelerometer X/Y/Z<br>
+&gt; &lt;float&gt; x3=C2=A0 =C2=A0 gyro X/Y/Z<br>
+&gt;<br>
+&gt; These pitch and yaw values are used to rotate the UI Head.<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; On 15 September 2015 at 16:04, Rob &lt;<a href=3D"mailto:pocketmoon@gm=
+ail.com" target=3D"_blank">pocketmoon@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi David,<br>
+&gt;<br>
+&gt; Ooh, close. I guess that&#39;s why Processing isn&#39;t used more for =
+proper cross platform apps. If you&#39;re making progress with the native a=
+pp I&#39;d stick with that.<br>
+&gt;<br>
+&gt; I&#39;ll spend some time later to write up the list of commands that f=
+low between the UI and the Arduino with a description of that data that get=
+s returned and drop it to you.<br>
+&gt;<br>
+&gt; Cheers,<br>
+&gt;<br>
+&gt; Rob<br>
+&gt;<br>
+&gt;<br>
+&gt; On 15 September 2015 at 15:02, David Henderson &lt;<a href=3D"mailto:d=
+h219@aibs.org.uk" target=3D"_blank">dh219@aibs.org.uk</a>&gt; wrote:<br>
+&gt; Hi again Rob,<br>
+&gt;<br>
+&gt; Quick update on my findings last night.<br>
+&gt;<br>
+&gt; The Processing project loaded up and ran at the first time of asking. =
+The 3D head flickers like no-one&#39;s business, but other than that it see=
+med to connect to the arduino and extract data without problem.<br>
+&gt;<br>
+&gt; The issue came when trying to compile a release version -- serial acce=
+ss caused it to freeze on startup. Apparently this is a bug in Processing 2=
+.2.1 for OSX which was not present in 2.1.2. Alas 2.1.2&#39;s no longer ava=
+ilable for download.<br>
+&gt;<br>
+&gt; 2.2.1 is Java 1.7 so I thought I&#39;d see if I could get it workign i=
+n Processing 3, which uses Java 1.8.<br>
+&gt;<br>
+&gt; There&#39;s been a change somewhere (either in Java itself or in the l=
+ibs) that a PApplet can no longer be a parameter to add() (needs a Componen=
+t type), but that was the only problem. I tried just commenting that out fo=
+r now and the program could run and seemingly behave normally although coul=
+dn&#39;t be properly terminated (presumably as it didn&#39;t have a referen=
+ce to the secondApplet).<br>
+&gt;<br>
+&gt; Unfortuntely I saw the same behaviour on export as I had in 2.2.1, so =
+either this bug is still firmly in place in the Processing libraries, or th=
+at missing reference to the secondApplet is causing different behaviour out=
+side of the IDE.<br>
+&gt;<br>
+&gt; Changing tack, I went back to my native Mac test project and added som=
+e basic support for talking to the serial port and having got it to the sta=
+ge of exchanging greetings, thought I&#39;d call that a night.<br>
+&gt;<br>
+&gt; Next I&#39;ll see if I can produce debugging output for the various se=
+rial line cases I can see listed in the java program unless you think it&#3=
+9;d be worth persisting with the conversion to Processing v3?<br>
+&gt;<br>
+&gt; I&#39;ve not followed through all the logic as to what gets sent back =
+to the Arduino or the maths behind it as yet.<br>
+&gt;<br>
+&gt; Regards,<br>
+&gt;<br>
+&gt; David.<br>
+&gt;<br>
+&gt; On Mon, 14 Sep 2015, Rob wrote:<br>
+&gt;<br>
+&gt; Hi David,<br>
+&gt;<br>
+&gt; I&#39;ve attached a zip with the old processing project (main file is<=
+br>
+&gt; EDTrackerUtil221pde)<br>
+&gt;<br>
+&gt; It kinda works on Windows with a new EDTracker 9150=C2=A0 - I get a mo=
+ving head<br>
+&gt; and some raw data being displayed so if that works in any way on Mac t=
+hen<br>
+&gt; it&#39;s a good start and we can have a crack at updating.<br>
+&gt;<br>
+&gt; Cheers,<br>
+&gt;<br>
+&gt; Rob<br>
+&gt;<br>
+&gt; Inline images 1<br>
+&gt;<br>
+&gt; On 14 September 2015 at 17:11, David Henderson &lt;<a href=3D"mailto:d=
+h219@aibs.org.uk" target=3D"_blank">dh219@aibs.org.uk</a>&gt; wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Hi Rob,<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0I&#39;ll have a crack at setting up the proc=
+essing IDE and<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0dependencies this evening. Downloaded the li=
+nux version quickly<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0at work and I can see where Arduino gets the=
+ name sketch from!<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0If you can let me have the project file(s), =
+I&#39;ll see how far I<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0can get with it.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Many thanks,<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0David.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0--<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0David.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:d.henderson.96@cantab.net"=
+ target=3D"_blank">d.henderson.96@cantab.net</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Mobile:=C2=A0 =C2=A007950<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0389353<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+<span><font color=3D"#888888">&gt;<br>
+&gt; --<br>
+&gt; David.<br>
+&gt; <a href=3D"mailto:d.henderson.96@cantab.net" target=3D"_blank">d.hende=
+rson.96@cantab.net</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0Mobile:=C2=A0 =C2=A007950 389353<br>
+&gt;<br>
+&gt;<br>
+<br>
+</font></span></blockquote></div><br></div></div>
+
+--001a1136022e6686bd0524bc9b14--

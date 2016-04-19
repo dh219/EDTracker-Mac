@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
@@ -11,6 +11,8 @@
                 <outlet property="axlevel" destination="cGh-QH-Urd" id="zOC-dZ-af7"/>
                 <outlet property="aylevel" destination="GTu-1f-gHD" id="xhs-aH-KBV"/>
                 <outlet property="azlevel" destination="PlD-sW-06h" id="Ift-sK-75b"/>
+                <outlet property="biasbutton" destination="hbf-fM-jjB" id="SiH-4g-w0i"/>
+                <outlet property="closebutton" destination="0gN-8J-eS4" id="VzS-F5-Nhu"/>
                 <outlet property="dtrbutton" destination="nfD-WT-3m8" id="668-Ok-h6k"/>
                 <outlet property="gxlevel" destination="WxM-Ua-hfV" id="uGD-Zc-0me"/>
                 <outlet property="gylevel" destination="YRF-TB-ID6" id="GXO-5N-rhZ"/>
@@ -27,15 +29,22 @@
                 <outlet property="magoffx" destination="5Ag-gG-ScO" id="wZo-Ae-akx"/>
                 <outlet property="magoffy" destination="9Bx-O5-QM0" id="C4L-Vk-aYF"/>
                 <outlet property="magoffz" destination="Iy7-bI-19O" id="9Yi-7I-v2D"/>
+                <outlet property="magpoints" destination="1cK-8F-ZZu" id="75k-4u-3WP"/>
+                <outlet property="openbutton" destination="5g4-q9-Hp5" id="TUy-ui-M0T"/>
+                <outlet property="orientbutton" destination="GFl-76-44C" id="FBe-0T-fEy"/>
                 <outlet property="orientfield" destination="vy4-TO-h3J" id="VgZ-Xt-7Rp"/>
+                <outlet property="pitchstepper" destination="0G2-6r-ZXL" id="6dn-B5-0vF"/>
                 <outlet property="pscalefield" destination="2s9-hh-jT9" id="0K4-No-5SJ"/>
+                <outlet property="recentrebutton" destination="sei-8s-vfP" id="hVY-Ik-HQW"/>
                 <outlet property="respfield" destination="brW-DQ-DSB" id="Xu9-t0-Epi"/>
+                <outlet property="responsebutton" destination="eyP-7M-JYc" id="hgC-z1-y50"/>
                 <outlet property="serialsend" destination="y5b-we-NhV" id="O3a-e8-Qd3"/>
                 <outlet property="smoothfield" destination="Nlx-kw-rDh" id="qkl-Cl-KAG"/>
-                <outlet property="smoothslider" destination="Q8U-I8-MUH" id="JBy-Q6-vIU"/>
+                <outlet property="smoothslider" destination="Q8U-I8-MUH" id="yqW-kH-PSA"/>
                 <outlet property="tfield" destination="tcH-Jh-V31" id="KTb-8N-39Y"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
                 <outlet property="xlevel" destination="RJ5-f8-ZZR" id="gum-B2-enb"/>
+                <outlet property="yawstepper" destination="6ub-qb-cBS" id="wbT-6v-ZqT"/>
                 <outlet property="ylevel" destination="CvO-gy-RuL" id="iSG-PC-oYo"/>
                 <outlet property="yscalefield" destination="GwL-Fe-EV4" id="rdR-Ti-4nq"/>
                 <outlet property="zlevel" destination="eFn-mg-1QH" id="U7l-Hq-Xru"/>
@@ -184,6 +193,14 @@
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dbs-f1-6LQ">
+                    <rect key="frame" x="379" y="40" width="72" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mag Points" id="GUG-fQ-az5">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vy4-TO-h3J">
@@ -437,6 +454,34 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uAK-VO-Mr0">
+                    <rect key="frame" x="375" y="58" width="77" height="32"/>
+                    <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MOc-Qr-tb3">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="ClearQList:" target="-2" id="vwj-pj-UaO"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1cK-8F-ZZu">
+                    <rect key="frame" x="455" y="37" width="64" height="22"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="AK0-iJ-eaK">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-CM-EK6">
+                    <rect key="frame" x="448" y="58" width="77" height="32"/>
+                    <buttonCell key="cell" type="push" title="Pause" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZGN-cQ-AYg">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="PauseQ:" target="-2" id="uwE-f7-yUt"/>
+                    </connections>
+                </button>
             </subviews>
             <point key="canvasLocation" x="216.5" y="370.5"/>
         </customView>

@@ -39,7 +39,7 @@
 	_port.delegate = self;
 	_port.DTR = true;
 	[_port open];
-
+	[_viewcontrol activateButtons:true];
 
 }
 
@@ -61,10 +61,12 @@
 -(void)serialPortWasRemovedFromSystem:(ORSSerialPort *)serialPort {
 	NSLog(@"Removed");
 	self.port = nil;
+	[_viewcontrol activateButtons:false];
 }
 
 -(void)serialPortWasClosed:(ORSSerialPort *)serialPort {
 	NSLog(@"Closed");
+	[_viewcontrol activateButtons:false];
 }
 
 -(void)serialPort:(ORSSerialPort *)serialPort requestDidTimeout:(ORSSerialRequest *)request {
@@ -172,7 +174,7 @@
 			[vec setElementValue:[chunks[2] floatValue] n:2];
 			[vec setElementValue:[chunks[3] floatValue] n:3];
 			[[_viewcontrol qpoints] addVector3:vec];
-			NSLog(@"qlist size: %li", [[_viewcontrol qpoints]count] );
+//			NSLog(@"qlist size: %li", [[_viewcontrol qpoints]count] );
 			break;
 		case('q'):
 			[_viewcontrol setHasinfo:true];
@@ -192,6 +194,8 @@
 		case('H'):
 			[_port sendData:[NSData dataWithBytes:"VI" length:2]];
 			NSLog(@"Sent VI");
+			[_viewcontrol closePleaseWaitSheet:self];
+			[_viewcontrol activateButtons:true];
 			break;
 		case('s'):
 			if( [chunks count] != 5 )

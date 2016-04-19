@@ -30,6 +30,10 @@
 	return self;
 }
 
+-(void)clearList{
+	[store removeAllObjects];
+}
+
 -(void)addVector3:(Vector3*)vec {
 	int theta;
 	int psi;

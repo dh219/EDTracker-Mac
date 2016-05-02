@@ -168,8 +168,9 @@
 }
 
 -(IBAction)UtilityButton:(id)sender {
-	[[_serialController port]sendData:[NSData dataWithBytes:"I" length:1]];
-	NSLog(@"Sent I");
+//	[[_serialController port]sendData:[NSData dataWithBytes:"I" length:1]];
+//	NSLog(@"Sent I");
+	[_qpoints dumpStore];
 }
 
 - (IBAction)PauseQ:(id)sender {

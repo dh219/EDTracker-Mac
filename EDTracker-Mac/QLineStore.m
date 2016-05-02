@@ -32,11 +32,15 @@
 
 -(void)clearList{
 	[store removeAllObjects];
+	_count = 0;
 }
 
 -(void)addVector3:(Vector3*)vec {
 	int theta;
 	int psi;
+	
+	if( _ispaused )
+		return;
 	
 	float x, y, z;
 	x = [vec x];
@@ -63,6 +67,16 @@
 		_count++;
 		[store addObject:vec];
 	}
+}
+
+-(void)dumpStore {
+	FILE *fp = fopen("/tmp/store.txt", "w" );
+	Vector3* v;
+	for( int i = 0 ; i < [store count] ; i++ ) {
+		v = store[i];
+		fprintf( fp, "%.2f\t%.2f\t%.2f\n", [v x], [v y], [v z] );
+	}
+	fclose( fp );
 }
 
 @end

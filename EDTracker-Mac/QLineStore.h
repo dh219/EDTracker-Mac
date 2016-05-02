@@ -16,5 +16,6 @@
 
 -(void)addVector3:(Vector3*)vec;
 -(void)clearList;
+-(void)dumpStore;
 
 @end

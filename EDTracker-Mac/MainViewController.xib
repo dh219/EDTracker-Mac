@@ -299,7 +299,7 @@
                         <action selector="GyroBias:" target="-2" id="v9t-pL-LQd"/>
                     </connections>
                 </button>
-                <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLO-FA-Wf9">
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLO-FA-Wf9">
                     <rect key="frame" x="286" y="397" width="76" height="32"/>
                     <buttonCell key="cell" type="push" title="Utility" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vaW-qJ-ft3">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

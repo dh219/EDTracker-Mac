@@ -119,7 +119,7 @@
 - (IBAction)Recentre:(id)sender;
 - (IBAction)GyroBias:(id)sender;
 
--(IBAction)UtilityButton:(id)sender;
+- (IBAction)UtilityButton:(id)sender;
 - (IBAction)PauseQ:(id)sender;
 - (IBAction)ClearQList:(id)sender;
 

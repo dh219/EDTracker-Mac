@@ -22,10 +22,7 @@
 	self = [super init];
 	if( self ) {
 		store = [[NSMutableArray alloc]init];
-		_count = 0;
-		for( int t = 0 ; t < MAXTHETA ; t++ )
-			for( int p = 0 ; p < MAXPSI ; p++ )
-				angledb[t][p] = false;
+		[self clearList];
 	}
 	return self;
 }
@@ -33,6 +30,17 @@
 -(void)clearList{
 	[store removeAllObjects];
 	_count = 0;
+	_maxmag = 1.0;
+	for( int t = 0 ; t < MAXTHETA ; t++ )
+		for( int p = 0 ; p < MAXPSI ; p++ )
+			angledb[t][p] = false;
+}
+
+-(Vector3*)getVector3:(int)i {
+	if( i < 0 || i > [store count] ) {
+		return nil;
+	}
+	return store[i];
 }
 
 -(void)addVector3:(Vector3*)vec {
@@ -65,6 +73,9 @@
 	if( !angledb[theta][psi] ) {
 		angledb[theta][psi] = true;
 		_count++;
+		float mag = [vec getMag];
+		if( mag > _maxmag )
+			_maxmag = mag;
 		[store addObject:vec];
 	}
 }
@@ -75,6 +86,24 @@
 	for( int i = 0 ; i < [store count] ; i++ ) {
 		v = store[i];
 		fprintf( fp, "%.2f\t%.2f\t%.2f\n", [v x], [v y], [v z] );
+	}
+	fclose( fp );
+}
+
+-(void)loadStore {
+	FILE *fp = fopen("/tmp/store.txt", "r" );
+	Vector3* v;
+	float x, y, z;
+	
+	[self clearList];
+	
+	int rc;
+	while( ( rc = fscanf(fp, "%f %f %f", &x, &y, &z ) ) != EOF && rc == 3 ) {
+		v = [[Vector3 alloc]init];
+		[v setElementValue:x n:1];
+		[v setElementValue:y n:2];
+		[v setElementValue:z n:3];
+		[self addVector3:v];
 	}
 	fclose( fp );
 }

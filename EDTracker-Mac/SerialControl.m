@@ -174,6 +174,8 @@
 			[vec setElementValue:[chunks[2] floatValue] n:2];
 			[vec setElementValue:[chunks[3] floatValue] n:3];
 			[[_viewcontrol qpoints] addVector3:vec];
+			[self.viewcontrol.gltopdown setNeedsDisplay:YES];
+			[self.viewcontrol.glfronton setNeedsDisplay:YES];
 //			NSLog(@"qlist size: %li", [[_viewcontrol qpoints]count] );
 			break;
 		case('q'):

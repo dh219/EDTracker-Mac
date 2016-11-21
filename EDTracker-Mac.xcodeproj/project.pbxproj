@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF357B611DE1F9950092B3D1 /* TopDown.m in Sources */ = {isa = PBXBuildFile; fileRef = FF357B601DE1F9950092B3D1 /* TopDown.m */; };
+		FF357B661DE21B6F0092B3D1 /* FrontOn.m in Sources */ = {isa = PBXBuildFile; fileRef = FF357B651DE21B6F0092B3D1 /* FrontOn.m */; };
+		FF357B691DE21C300092B3D1 /* PointViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = FF357B681DE21C300092B3D1 /* PointViewer.m */; };
 		FF9790AB1CC591D9002E99FF /* PleaseWait.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF9790AA1CC591D9002E99FF /* PleaseWait.xib */; };
 		FF9C79981CA1E80B004FF0F5 /* SerialControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9C79971CA1E80B004FF0F5 /* SerialControl.m */; };
 		FF9C79AB1CA1F242004FF0F5 /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF9C79A81CA1F236004FF0F5 /* ORSSerial.framework */; };
@@ -39,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FF357B5F1DE1F9950092B3D1 /* TopDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDown.h; sourceTree = "<group>"; };
+		FF357B601DE1F9950092B3D1 /* TopDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopDown.m; sourceTree = "<group>"; };
+		FF357B641DE21B6F0092B3D1 /* FrontOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontOn.h; sourceTree = "<group>"; };
+		FF357B651DE21B6F0092B3D1 /* FrontOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontOn.m; sourceTree = "<group>"; };
+		FF357B671DE21C300092B3D1 /* PointViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointViewer.h; sourceTree = "<group>"; };
+		FF357B681DE21C300092B3D1 /* PointViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointViewer.m; sourceTree = "<group>"; };
 		FF9790AA1CC591D9002E99FF /* PleaseWait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PleaseWait.xib; sourceTree = "<group>"; };
 		FF9C79961CA1E80B004FF0F5 /* SerialControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialControl.h; sourceTree = "<group>"; };
 		FF9C79971CA1E80B004FF0F5 /* SerialControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialControl.m; sourceTree = "<group>"; };
@@ -119,6 +128,12 @@
 				FFE1B3C41CAB17F400B895E3 /* QLineStore.h */,
 				FFE1B3C51CAB17F400B895E3 /* QLineStore.m */,
 				FF9790AA1CC591D9002E99FF /* PleaseWait.xib */,
+				FF357B671DE21C300092B3D1 /* PointViewer.h */,
+				FF357B681DE21C300092B3D1 /* PointViewer.m */,
+				FF357B5F1DE1F9950092B3D1 /* TopDown.h */,
+				FF357B601DE1F9950092B3D1 /* TopDown.m */,
+				FF357B641DE21B6F0092B3D1 /* FrontOn.h */,
+				FF357B651DE21B6F0092B3D1 /* FrontOn.m */,
 			);
 			path = "EDTracker-Mac";
 			sourceTree = "<group>";
@@ -229,10 +244,13 @@
 				FF9C79981CA1E80B004FF0F5 /* SerialControl.m in Sources */,
 				FFAA6FFD1C5051E30059BC80 /* main.m in Sources */,
 				FF9C79B61CA4B223004FF0F5 /* Vector3.m in Sources */,
+				FF357B661DE21B6F0092B3D1 /* FrontOn.m in Sources */,
+				FF357B691DE21C300092B3D1 /* PointViewer.m in Sources */,
 				FFAA6FFA1C5051E30059BC80 /* AppDelegate.m in Sources */,
 				FFAB93341C5D799F0075746D /* MainViewController.m in Sources */,
 				FF9C79B11CA47802004FF0F5 /* Matrix33.m in Sources */,
 				FFE1B3C61CAB17F400B895E3 /* QLineStore.m in Sources */,
+				FF357B611DE1F9950092B3D1 /* TopDown.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

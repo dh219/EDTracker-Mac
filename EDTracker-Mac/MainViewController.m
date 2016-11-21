@@ -38,6 +38,9 @@
 	_serialController = [[SerialControl alloc] init];
 	_serialController.viewcontrol = self;
 	
+	_gltopdown.viewcontrol = self;
+	_glfronton.viewcontrol = self;
+	
 	[self activateButtons:false];
 }
 
@@ -147,16 +150,17 @@
 	
 	if( !_pleasewaitsheet )
 		[NSBundle loadNibNamed:@"PleaseWait" owner:self];
-	[NSApp beginSheet:self.pleasewaitsheet
+/*	[NSApp beginSheet:self.pleasewaitsheet
 	   modalForWindow:[[NSApp delegate] window]
 		modalDelegate:self
 	   didEndSelector:NULL
 		  contextInfo:NULL];
-	
+
 	[[self pinwheel] setHidden:NO];
 	[[self pinwheel] setIndeterminate:YES];
 	[[self pinwheel] setUsesThreadedAnimation:YES];
 	[[self pinwheel] startAnimation:nil];
+*/
 }
 
 -(IBAction)closePleaseWaitSheet:(id)sender {
@@ -167,10 +171,15 @@
 	}
 }
 
--(IBAction)UtilityButton:(id)sender {
-//	[[_serialController port]sendData:[NSData dataWithBytes:"I" length:1]];
-//	NSLog(@"Sent I");
+-(IBAction)SavePoints:(id)sender {
+	//	[[_serialController port]sendData:[NSData dataWithBytes:"I" length:1]];
+	//	NSLog(@"Sent I");
 	[_qpoints dumpStore];
+}
+-(IBAction)LoadPoints:(id)sender {
+	//	[[_serialController port]sendData:[NSData dataWithBytes:"I" length:1]];
+	//	NSLog(@"Sent I");
+	[_qpoints loadStore];
 }
 
 - (IBAction)PauseQ:(id)sender {
@@ -201,6 +210,7 @@
 	[sender setIntValue:0];
 	[_serialController writeScaleYaw:_yscale Pitch:_pscale Smoothing:_smoothing];
 }
+
 - (IBAction)ChangePitchScale:(id)sender {
 	if( [sender integerValue] < 0 ) {
 		NSLog(@"Pitch Minus");

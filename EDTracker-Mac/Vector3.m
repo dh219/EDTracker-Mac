@@ -48,6 +48,10 @@
 -(float)z {
 	return elements[2];
 }
+-(float)getMag {
+	return sqrt( elements[0]*elements[0] + elements[1]*elements[1] + elements[2]*elements[2] );
+}
+
 
 @end
 

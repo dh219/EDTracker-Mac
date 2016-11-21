@@ -16,5 +16,6 @@
 -(float)x;
 -(float)y;
 -(float)z;
+-(float)getMag;
 
 @end

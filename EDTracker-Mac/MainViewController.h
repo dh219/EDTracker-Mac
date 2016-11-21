@@ -11,6 +11,7 @@
 #import "Matrix33.h"
 #import "Vector3.h"
 #import "QLineStore.h"
+#import "PointViewer.h"
 
 @class ORSSerialPortManager;
 
@@ -61,6 +62,9 @@
 @property (weak) IBOutlet NSTextField *serialsend;
 
 @property (weak) IBOutlet NSProgressIndicator *pinwheel;
+
+@property (weak) IBOutlet PointViewer *gltopdown;
+@property (weak) IBOutlet PointViewer *glfronton;
 
 // state variables
 
@@ -119,7 +123,8 @@
 - (IBAction)Recentre:(id)sender;
 - (IBAction)GyroBias:(id)sender;
 
-- (IBAction)UtilityButton:(id)sender;
+- (IBAction)SavePoints:(id)sender;
+- (IBAction)LoadPoints:(id)sender;
 - (IBAction)PauseQ:(id)sender;
 - (IBAction)ClearQList:(id)sender;
 

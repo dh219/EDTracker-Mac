@@ -27,7 +27,9 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2016 D Henderson. All rights reserved.</string>
+	<string>Copyright © 2016 D Henderson (dh219@aibs.org.uk).
+Distributed under licence CC BY-NC-SA 4.0.
+ORSSerialPort © 2011-2012 Andrew R. Madsen.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

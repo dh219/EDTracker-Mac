@@ -23,6 +23,7 @@
 		9DD6B1D31B5F4338000AB46E /* ORSSerialPacketDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6B1D11B5F4338000AB46E /* ORSSerialPacketDescriptor.m */; };
 		A933F5991AC33D1700461525 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A933F5981AC33D1700461525 /* IOKit.framework */; };
 		A933F59B1AC33D2700461525 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A933F59A1AC33D2700461525 /* Cocoa.framework */; };
+		FF357B7E1DE398E30092B3D1 /* ORSSerialPort in Frameworks */ = {isa = PBXBuildFile; fileRef = FF357B7D1DE398E30092B3D1 /* ORSSerialPort */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		9DD6B1D11B5F4338000AB46E /* ORSSerialPacketDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialPacketDescriptor.m; sourceTree = "<group>"; };
 		A933F5981AC33D1700461525 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A933F59A1AC33D2700461525 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		FF357B7A1DE396F50092B3D1 /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ORSSerialPort.xcodeproj; sourceTree = "<group>"; };
+		FF357B7D1DE398E30092B3D1 /* ORSSerialPort */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ORSSerialPort; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,7 @@
 			files = (
 				A933F59B1AC33D2700461525 /* Cocoa.framework in Frameworks */,
 				A933F5991AC33D1700461525 /* IOKit.framework in Frameworks */,
+				FF357B7E1DE398E30092B3D1 /* ORSSerialPort in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +118,7 @@
 				9DCCC2531AD1D289003E21FC /* Linked Frameworks */,
 				9D7472141B6D7767002D8B10 /* ORSSerialPort Tests */,
 				9DCA89131A2BB106009285EB /* Products */,
+				FF357B791DE396F50092B3D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +163,20 @@
 				A933F5981AC33D1700461525 /* IOKit.framework */,
 			);
 			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		FF357B791DE396F50092B3D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF357B7D1DE398E30092B3D1 /* ORSSerialPort */,
+				FF357B7A1DE396F50092B3D1 /* ORSSerialPort.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF357B7B1DE396F50092B3D1 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +261,12 @@
 			mainGroup = 9DCA89081A2BB106009285EB;
 			productRefGroup = 9DCA89131A2BB106009285EB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FF357B7B1DE396F50092B3D1 /* Products */;
+					ProjectRef = FF357B7A1DE396F50092B3D1 /* ORSSerialPort.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9DCA89111A2BB106009285EB /* ORSSerial */,
@@ -415,6 +440,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

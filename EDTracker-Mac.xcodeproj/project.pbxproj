@@ -10,13 +10,13 @@
 		FF357B611DE1F9950092B3D1 /* TopDown.m in Sources */ = {isa = PBXBuildFile; fileRef = FF357B601DE1F9950092B3D1 /* TopDown.m */; };
 		FF357B661DE21B6F0092B3D1 /* FrontOn.m in Sources */ = {isa = PBXBuildFile; fileRef = FF357B651DE21B6F0092B3D1 /* FrontOn.m */; };
 		FF357B691DE21C300092B3D1 /* PointViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = FF357B681DE21C300092B3D1 /* PointViewer.m */; };
+		FF357B6F1DE394760092B3D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF357B6E1DE394760092B3D1 /* main.m */; };
+		FF357B891DE39A630092B3D1 /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF357B861DE399EE0092B3D1 /* ORSSerial.framework */; };
 		FF9790AB1CC591D9002E99FF /* PleaseWait.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF9790AA1CC591D9002E99FF /* PleaseWait.xib */; };
 		FF9C79981CA1E80B004FF0F5 /* SerialControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9C79971CA1E80B004FF0F5 /* SerialControl.m */; };
-		FF9C79AB1CA1F242004FF0F5 /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF9C79A81CA1F236004FF0F5 /* ORSSerial.framework */; };
 		FF9C79B11CA47802004FF0F5 /* Matrix33.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9C79B01CA47802004FF0F5 /* Matrix33.m */; };
 		FF9C79B61CA4B223004FF0F5 /* Vector3.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9C79B51CA4B223004FF0F5 /* Vector3.m */; };
 		FFAA6FFA1C5051E30059BC80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAA6FF91C5051E30059BC80 /* AppDelegate.m */; };
-		FFAA6FFD1C5051E30059BC80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAA6FFC1C5051E30059BC80 /* main.m */; };
 		FFAA70021C5051E30059BC80 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFAA70001C5051E30059BC80 /* MainMenu.xib */; };
 		FFAA700A1C5052850059BC80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFAA70091C5052850059BC80 /* Assets.xcassets */; };
 		FFAB93341C5D799F0075746D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAB93321C5D799F0075746D /* MainViewController.m */; };
@@ -25,16 +25,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FF9C79A71CA1F236004FF0F5 /* PBXContainerItemProxy */ = {
+		FF357B851DE399EE0092B3D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FF9C79A21CA1F235004FF0F5 /* ORSSerialPort.xcodeproj */;
+			containerPortal = FF357B801DE399EE0092B3D1 /* ORSSerialPort.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9DCA89121A2BB106009285EB;
 			remoteInfo = ORSSerial;
 		};
-		FF9C79A91CA1F236004FF0F5 /* PBXContainerItemProxy */ = {
+		FF357B871DE399EE0092B3D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FF9C79A21CA1F235004FF0F5 /* ORSSerialPort.xcodeproj */;
+			containerPortal = FF357B801DE399EE0092B3D1 /* ORSSerialPort.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9D7472131B6D7767002D8B10;
 			remoteInfo = "ORSSerialPort Tests";
@@ -48,10 +48,11 @@
 		FF357B651DE21B6F0092B3D1 /* FrontOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontOn.m; sourceTree = "<group>"; };
 		FF357B671DE21C300092B3D1 /* PointViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointViewer.h; sourceTree = "<group>"; };
 		FF357B681DE21C300092B3D1 /* PointViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointViewer.m; sourceTree = "<group>"; };
+		FF357B6E1DE394760092B3D1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FF357B801DE399EE0092B3D1 /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "Frameworks/ORSSerialPort/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		FF9790AA1CC591D9002E99FF /* PleaseWait.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PleaseWait.xib; sourceTree = "<group>"; };
 		FF9C79961CA1E80B004FF0F5 /* SerialControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialControl.h; sourceTree = "<group>"; };
 		FF9C79971CA1E80B004FF0F5 /* SerialControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialControl.m; sourceTree = "<group>"; };
-		FF9C79A21CA1F235004FF0F5 /* ORSSerialPort.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ORSSerialPort.xcodeproj; path = "Frameworks/ORSSerialPort/Framework Project/ORSSerialPort.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		FF9C79AF1CA47802004FF0F5 /* Matrix33.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix33.h; sourceTree = "<group>"; };
 		FF9C79B01CA47802004FF0F5 /* Matrix33.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix33.m; sourceTree = "<group>"; };
 		FF9C79B41CA4B223004FF0F5 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3.h; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		FFAA6FF51C5051E30059BC80 /* EDTracker-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EDTracker-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAA6FF81C5051E30059BC80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FFAA6FF91C5051E30059BC80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FFAA6FFC1C5051E30059BC80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FFAA70011C5051E30059BC80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		FFAA70031C5051E30059BC80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFAA70091C5052850059BC80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,18 +75,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF9C79AB1CA1F242004FF0F5 /* ORSSerial.framework in Frameworks */,
+				FF357B891DE39A630092B3D1 /* ORSSerial.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FF9C79A31CA1F235004FF0F5 /* Products */ = {
+		FF357B811DE399EE0092B3D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF9C79A81CA1F236004FF0F5 /* ORSSerial.framework */,
-				FF9C79AA1CA1F236004FF0F5 /* ORSSerialPort Tests.xctest */,
+				FF357B861DE399EE0092B3D1 /* ORSSerial.framework */,
+				FF357B881DE399EE0092B3D1 /* ORSSerialPort Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,8 +141,8 @@
 		FFAA6FFB1C5051E30059BC80 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FF9C79A21CA1F235004FF0F5 /* ORSSerialPort.xcodeproj */,
-				FFAA6FFC1C5051E30059BC80 /* main.m */,
+				FF357B801DE399EE0092B3D1 /* ORSSerialPort.xcodeproj */,
+				FF357B6E1DE394760092B3D1 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -173,7 +173,7 @@
 		FFAA6FED1C5051E30059BC80 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "D Henderson";
 				TargetAttributes = {
 					FFAA6FF41C5051E30059BC80 = {
@@ -194,8 +194,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FF9C79A31CA1F235004FF0F5 /* Products */;
-					ProjectRef = FF9C79A21CA1F235004FF0F5 /* ORSSerialPort.xcodeproj */;
+					ProductGroup = FF357B811DE399EE0092B3D1 /* Products */;
+					ProjectRef = FF357B801DE399EE0092B3D1 /* ORSSerialPort.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -206,18 +206,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FF9C79A81CA1F236004FF0F5 /* ORSSerial.framework */ = {
+		FF357B861DE399EE0092B3D1 /* ORSSerial.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ORSSerial.framework;
-			remoteRef = FF9C79A71CA1F236004FF0F5 /* PBXContainerItemProxy */;
+			remoteRef = FF357B851DE399EE0092B3D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FF9C79AA1CA1F236004FF0F5 /* ORSSerialPort Tests.xctest */ = {
+		FF357B881DE399EE0092B3D1 /* ORSSerialPort Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "ORSSerialPort Tests.xctest";
-			remoteRef = FF9C79A91CA1F236004FF0F5 /* PBXContainerItemProxy */;
+			remoteRef = FF357B871DE399EE0092B3D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -241,8 +241,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF357B6F1DE394760092B3D1 /* main.m in Sources */,
 				FF9C79981CA1E80B004FF0F5 /* SerialControl.m in Sources */,
-				FFAA6FFD1C5051E30059BC80 /* main.m in Sources */,
 				FF9C79B61CA4B223004FF0F5 /* Vector3.m in Sources */,
 				FF357B661DE21B6F0092B3D1 /* FrontOn.m in Sources */,
 				FF357B691DE21C300092B3D1 /* PointViewer.m in Sources */,
@@ -281,8 +281,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -324,8 +326,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -343,6 +347,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;

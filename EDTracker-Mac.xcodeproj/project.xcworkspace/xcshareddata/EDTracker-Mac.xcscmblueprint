@@ -1,10 +1,10 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "d585612f-cdd8-4a53-8c99-01eb17128cf3+++D355125",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "d585612f-cdd8-4a53-8c99-01eb17128cf3++7743+++D355125",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
-    "d585612f-cdd8-4a53-8c99-01eb17128cf3+++D355125" : {
+    "5A811E91F5DFF59170683E14D2C5755F19DE18CB+++42844BC" : {
 
     },
-    "5A811E91F5DFF59170683E14D2C5755F19DE18CB+++42844BC" : {
+    "d585612f-cdd8-4a53-8c99-01eb17128cf3++7743+++D355125" : {
 
     },
     "5A811E91F5DFF59170683E14D2C5755F19DE18CB+++E7B0BC1" : {
@@ -16,16 +16,16 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "5A811E91F5DFF59170683E14D2C5755F19DE18CB+++DF843DB" : 0,
-    "d585612f-cdd8-4a53-8c99-01eb17128cf3+++D355125" : 0,
     "5A811E91F5DFF59170683E14D2C5755F19DE18CB+++42844BC" : 0,
+    "d585612f-cdd8-4a53-8c99-01eb17128cf3++7743+++D355125" : 0,
     "5A811E91F5DFF59170683E14D2C5755F19DE18CB+++E7B0BC1" : 0,
     "d585612f-cdd8-4a53-8c99-01eb17128cf3+++EFD61B6" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "83AC1474-E8D5-47A4-96A6-F9DFB40FB033",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "5A811E91F5DFF59170683E14D2C5755F19DE18CB+++DF843DB" : "svn\/edtracker\/EDTracker-Mac\/Frameworks\/ORSSerialPort\/",
-    "d585612f-cdd8-4a53-8c99-01eb17128cf3+++D355125" : "svn\/",
     "5A811E91F5DFF59170683E14D2C5755F19DE18CB+++42844BC" : "Devel\/edtracker\/EDTracker-Mac\/Frameworks\/ORSSerialPort\/",
+    "d585612f-cdd8-4a53-8c99-01eb17128cf3++7743+++D355125" : "svn\/",
     "5A811E91F5DFF59170683E14D2C5755F19DE18CB+++E7B0BC1" : "Devel\/edtracker\/EDTracker-Mac\/Frameworks\/ORSSerialPort\/",
     "d585612f-cdd8-4a53-8c99-01eb17128cf3+++EFD61B6" : "Devel\/"
   },
@@ -51,12 +51,12 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/gin.aibs.org.uk\/usr\/local\/svn",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "d585612f-cdd8-4a53-8c99-01eb17128cf3+++D355125"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "d585612f-cdd8-4a53-8c99-01eb17128cf3+++EFD61B6"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/gin.aibs.org.uk\/usr\/local\/svn",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "d585612f-cdd8-4a53-8c99-01eb17128cf3+++EFD61B6"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "d585612f-cdd8-4a53-8c99-01eb17128cf3++7743+++D355125"
     }
   ]
 }

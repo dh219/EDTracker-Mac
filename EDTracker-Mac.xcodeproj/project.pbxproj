@@ -12,6 +12,7 @@
 		FF357B691DE21C300092B3D1 /* PointViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = FF357B681DE21C300092B3D1 /* PointViewer.m */; };
 		FF357B6F1DE394760092B3D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF357B6E1DE394760092B3D1 /* main.m */; };
 		FF357B891DE39A630092B3D1 /* ORSSerial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF357B861DE399EE0092B3D1 /* ORSSerial.framework */; };
+		FF357B8B1DE3AA1C0092B3D1 /* ORSSerial.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF357B861DE399EE0092B3D1 /* ORSSerial.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF9790AB1CC591D9002E99FF /* PleaseWait.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF9790AA1CC591D9002E99FF /* PleaseWait.xib */; };
 		FF9C79981CA1E80B004FF0F5 /* SerialControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9C79971CA1E80B004FF0F5 /* SerialControl.m */; };
 		FF9C79B11CA47802004FF0F5 /* Matrix33.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9C79B01CA47802004FF0F5 /* Matrix33.m */; };
@@ -39,7 +40,28 @@
 			remoteGlobalIDString = 9D7472131B6D7767002D8B10;
 			remoteInfo = "ORSSerialPort Tests";
 		};
+		FF357B8C1DE3AA1C0092B3D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF357B801DE399EE0092B3D1 /* ORSSerialPort.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DCA89111A2BB106009285EB;
+			remoteInfo = ORSSerial;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FF357B8E1DE3AA1C0092B3D1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FF357B8B1DE3AA1C0092B3D1 /* ORSSerial.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FF357B5F1DE1F9950092B3D1 /* TopDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopDown.h; sourceTree = "<group>"; };
@@ -157,10 +179,12 @@
 				FFAA6FF11C5051E30059BC80 /* Sources */,
 				FFAA6FF21C5051E30059BC80 /* Frameworks */,
 				FFAA6FF31C5051E30059BC80 /* Resources */,
+				FF357B8E1DE3AA1C0092B3D1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FF357B8D1DE3AA1C0092B3D1 /* PBXTargetDependency */,
 			);
 			name = "EDTracker-Mac";
 			productName = "EDTracker-Mac";
@@ -256,6 +280,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FF357B8D1DE3AA1C0092B3D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ORSSerial;
+			targetProxy = FF357B8C1DE3AA1C0092B3D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		FFAA70001C5051E30059BC80 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
@@ -308,7 +340,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -347,7 +379,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;

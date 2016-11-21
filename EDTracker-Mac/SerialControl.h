@@ -12,6 +12,8 @@
 @import ORSSerial;
 
 @class MainViewController;
+@class Vector3;
+@class Matrix33;
 
 @interface SerialControl : NSObject <ORSSerialPortDelegate> //, NSUserNotificationCenterDelegate>
 
@@ -23,5 +25,6 @@
 -(void)CloseSerial;
 -(void)SendCString:(const char*)string;
 - (void) writeScaleYaw:(float)yaw Pitch:(float)pitch Smoothing:(float)smoothing;
+- (void) write$Data:(Vector3*)offset unrotmatrix:(Matrix33*)matrix;
 
 @end

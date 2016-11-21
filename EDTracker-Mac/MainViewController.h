@@ -112,6 +112,13 @@
 @property (weak) IBOutlet NSButton *recentrebutton;
 @property (weak) IBOutlet NSButton *biasbutton;
 
+@property (weak) IBOutlet NSStepper *xoffstepper;
+@property (weak) IBOutlet NSStepper *yoffstepper;
+@property (weak) IBOutlet NSStepper *zoffstepper;
+@property (weak) IBOutlet NSStepper *xmatstepper;
+@property (weak) IBOutlet NSStepper *ymatstepper;
+@property (weak) IBOutlet NSStepper *zmatstepper;
+
 
 
 // button functions et al

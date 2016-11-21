@@ -13,7 +13,7 @@
 
 @implementation PointViewer
 
-static const float radius = 0.8f;
+static const float radius = 0.9f;
 static const float steps = (float)64;
 
 - (void)drawRect:(NSRect)dirtyRect {

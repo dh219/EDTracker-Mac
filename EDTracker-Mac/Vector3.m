@@ -25,6 +25,30 @@
 	return self;
 }
 
+-(void)clear0 {
+	elements[0] = 0.0;
+	elements[1] = 0.0;
+	elements[2] = 0.0;
+}
+
+-(void)clear1 {
+	elements[0] = 0.0;
+	elements[1] = 0.0;
+	elements[2] = 1.0;
+}
+
+-(void)clearn999 {
+	elements[0] = -999.0;
+	elements[1] = -999.0;
+	elements[2] = -999.0;
+}
+-(void)clear999{
+	elements[0] = 999.0;
+	elements[1] = 999.0;
+	elements[2] = 999.0;
+}
+
+
 -(void)setElementValue:(float)value n:(short)n {
 	if( n < 1 || n > 3 )
 		return;

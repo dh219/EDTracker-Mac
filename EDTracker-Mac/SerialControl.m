@@ -133,6 +133,60 @@
 	[_port sendData:d];
 }
 
+
+- (void) write$Data:(Vector3*)offset unrotmatrix:(Matrix33*)matrix {
+	//- (void) write$Data {
+	Byte s[44];
+	int16_t val;
+	int i;
+	
+	// rotate a copy of the matrix here
+	float t;
+	switch( [_viewcontrol orient] ) {
+		case(1): // top-back -- rotate 270 around Z
+			t = -pi/2.0;
+			break;
+		case(0): // top-right -- rotate 180 around Z
+			t = pi;
+			break;
+		case(3): // top-front -- rotate 90 around Z
+			t = pi/2.0;
+			break;
+		default:
+		case(2): // top-left -- no change
+			t = 0.0;
+			break;
+	}
+	Matrix33 *rmatrix = [[Matrix33 alloc]init];
+	[matrix matRotZ:t output:rmatrix];
+	
+	s[0] = '$';
+	
+	val = (int16_t)( [offset x] * 64.0 );
+	memcpy( s+1, &val, 2 );
+	val = (int16_t)( [offset y] * 64.0 );
+	memcpy( s+3, &val, 2 );
+	val = (int16_t)( [offset z] * 64.0 );
+	memcpy( s+5, &val, 2 );
+	
+	for( i = 0 ; i < 9 ; i++ ) {
+		val = (int16_t)( [rmatrix getElement0:i] * 8192.0 );
+		memcpy( s+7+(2*i), &val, 2 );
+	}
+
+	for( i = 0 ; i < 9 ; i++ ) {
+		val = (int16_t)( [matrix getElement0:i] * 8192.0 );
+		memcpy( s+25+(2*i), &val, 2 );
+	}
+	
+	s[43] = '\n';
+	
+	NSData *d = [NSData dataWithBytes:s length:44];
+	[_port sendData:d];
+}
+
+
+
 -(void) handlePacket:(NSString *)packet {
 
 //	NSLog(@"%@",packet);
@@ -187,10 +241,16 @@
 					int offset = 4+i+(3*j);
 					[[_viewcontrol magcalmat] setElementValue:[chunks[offset] floatValue] i:i+1 j:j+1];
 				}
+				[[_viewcontrol xmatstepper] setFloatValue:[chunks[4] floatValue]];
+				[[_viewcontrol ymatstepper] setFloatValue:[chunks[8] floatValue]];
+				[[_viewcontrol zmatstepper] setFloatValue:[chunks[12] floatValue]];
 			}
 			[[_viewcontrol magoffset] setElementValue:[chunks[1] floatValue] n:1];
 			[[_viewcontrol magoffset] setElementValue:[chunks[2] floatValue] n:2];
 			[[_viewcontrol magoffset] setElementValue:[chunks[3] floatValue] n:3];
+			[[_viewcontrol xoffstepper] setFloatValue:[chunks[1] floatValue]];
+			[[_viewcontrol yoffstepper] setFloatValue:[chunks[2] floatValue]];
+			[[_viewcontrol zoffstepper] setFloatValue:[chunks[3] floatValue]];
 			
 			break;
 		case('H'):

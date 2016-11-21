@@ -133,7 +133,7 @@
 }
 
 -(IBAction)MountOrientation:(id)sender {
-	
+	[_serialController SendCString:"P"];
 }
 
 - (IBAction)ResponseMode:(id)sender {
@@ -243,7 +243,65 @@
 	[self.smoothslider setEnabled:set];
 	[self.recentrebutton setEnabled:set];
 	[self.biasbutton setEnabled:set];
+	[self.xoffstepper setEnabled:set];
+	[self.yoffstepper setEnabled:set];
+	[self.zoffstepper setEnabled:set];
+	[self.xmatstepper setEnabled:set];
+	[self.ymatstepper setEnabled:set];
+	[self.zmatstepper setEnabled:set];
 }
 
+- (IBAction)xoffchange:(id)sender {
+	[_magoffset setElementValue:[_xoffstepper floatValue] n:1];
+}
+- (IBAction)yoffchange:(id)sender {
+	[_magoffset setElementValue:[_yoffstepper floatValue] n:2];
+}
+- (IBAction)zoffchange:(id)sender {
+	[_magoffset setElementValue:[_zoffstepper floatValue] n:3];
+}
+
+- (IBAction)xmagchange:(id)sender {
+	[_magcalmat setElementValue:[_xmatstepper floatValue] i:1 j:1];
+}
+- (IBAction)ymagchange:(id)sender {
+	[_magcalmat setElementValue:[_ymatstepper floatValue] i:2 j:2];
+}
+- (IBAction)zmagchange:(id)sender {
+	[_magcalmat setElementValue:[_zmatstepper floatValue] i:3 j:3];
+}
+
+- (IBAction)uploadCalData:(id)sender {
+//	write$Data:(Vector3*)offset unrotmatrix:(Matrix33*)matrix {
+	[_serialController write$Data:_magoffset unrotmatrix:_magcalmat];
+}
+
+- (IBAction)resetCalibration:(id)sender {
+	[_magoffset setElementValue:0.0 n:1];
+	[_magoffset setElementValue:0.0 n:2];
+	[_magoffset setElementValue:0.0 n:3];
+	
+	[_magcalmat setElementValue:1.0 i:1 j:1];
+	[_magcalmat setElementValue:0.0 i:2 j:1];
+	[_magcalmat setElementValue:0.0 i:3 j:1];
+	[_magcalmat setElementValue:0.0 i:1 j:2];
+	[_magcalmat setElementValue:1.0 i:2 j:2];
+	[_magcalmat setElementValue:0.0 i:3 j:2];
+	[_magcalmat setElementValue:0.0 i:1 j:3];
+	[_magcalmat setElementValue:0.0 i:2 j:3];
+	[_magcalmat setElementValue:1.0 i:3 j:3];
+}
+
+- (IBAction)autoFit:(id)sender {
+	[_qpoints autoFitOffset:_magoffset magMat:_magcalmat];
+
+	[_xoffstepper setFloatValue:[_magoffset x]];
+	[_yoffstepper setFloatValue:[_magoffset y]];
+	[_zoffstepper setFloatValue:[_magoffset z]];
+
+	[_xmatstepper setFloatValue:[_magcalmat getElementi:1 j:1]];
+	[_ymatstepper setFloatValue:[_magcalmat getElementi:2 j:2]];
+	[_zmatstepper setFloatValue:[_magcalmat getElementi:3 j:3]];
+}
 
 @end

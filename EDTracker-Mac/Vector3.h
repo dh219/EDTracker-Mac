@@ -12,6 +12,10 @@
 
 - (id)init;
 -(void)setElementValue:(float)value n:(short)n;
+-(void)clear0;
+-(void)clearn999;
+-(void)clear999;
+-(void)clear1;
 -(float)getElementN:(short)i;
 -(float)x;
 -(float)y;

@@ -25,16 +25,19 @@
 	Vector3* w;
 	w = [[Vector3 alloc]init];
 	
-	float maxmag = [self.viewcontrol.qpoints maxmag];
+	float maxmag = [self.viewcontrol.qpoints getScaleFactor];
+	float maxmagoff = [self.viewcontrol.qpoints getScaleFactorOffset:self.viewcontrol.magoffset];
+	
 	for( int i = 0 ; i < [self.viewcontrol.qpoints count] ; i++ ) {
 		v = [self.viewcontrol.qpoints getVector3:i];
-		[self.viewcontrol.magcalmat vecMult:v output:w];
+		[self.viewcontrol.magcalmat vecMult:v output:w offset:self.viewcontrol.magoffset];
 		glColor3f(1.0f, 0.0f, 0.0f);
 		glVertex2f( [v x]/maxmag, [v y]/maxmag );
 		glColor3f(1.0f, 1.0f, 0.0f);
-		glVertex2f( [w x]/maxmag, [w y]/maxmag );
+		glVertex2f( [w x]/maxmagoff, [w y]/maxmagoff );
 		
 	}
+
 	glEnd();
 	
 	glFlush();

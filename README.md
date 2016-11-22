@@ -5,6 +5,7 @@ MacOS version of the DIY EDTracker (www.edtracker.org.uk) configuration software
 =================================================================================
 
 Copyright (C) 2016 D Henderson. Released under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International licence.
+
 OSRSerialPort framework (c) 2011-2012 Andrew R. Madsen. Used under the MIT Licence (MIT). 
 
 Compatibility

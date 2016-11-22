@@ -46,3 +46,6 @@ Reset calibration to defaults
 =============================
 
 Connect the EDTracker, Open the serial connection, hit 'Reset' and 'Upload Cal'. This is the out-of-the-box calibration defaults. You can now start calibration again from scratch.
+
+
+https://github.com/dh219/EDTracker-Mac

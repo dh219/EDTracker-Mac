@@ -103,6 +103,7 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="292" y="-71"/>
         </menu>
         <window title="EDTracker-Mac" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>

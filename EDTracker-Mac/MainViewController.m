@@ -150,8 +150,8 @@
 	
 	if( !_pleasewaitsheet )
 		[NSBundle loadNibNamed:@"PleaseWait" owner:self];
-/*	[NSApp beginSheet:self.pleasewaitsheet
-	   modalForWindow:[[NSApp delegate] window]
+	[NSApp beginSheet:self.pleasewaitsheet
+	   modalForWindow:self.appdelegate.window
 		modalDelegate:self
 	   didEndSelector:NULL
 		  contextInfo:NULL];
@@ -160,7 +160,7 @@
 	[[self pinwheel] setIndeterminate:YES];
 	[[self pinwheel] setUsesThreadedAnimation:YES];
 	[[self pinwheel] startAnimation:nil];
-*/
+
 }
 
 -(IBAction)closePleaseWaitSheet:(id)sender {

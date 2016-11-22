@@ -11,7 +11,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (weak) IBOutlet NSWindow *window;
+@property (strong) IBOutlet NSWindow *window;
 @property (nonatomic,strong) IBOutlet MainViewController *mainviewcontroller;
 
 @end

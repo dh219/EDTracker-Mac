@@ -13,14 +13,17 @@
 #import "QLineStore.h"
 #import "PointViewer.h"
 
+@class AppDelegate;
 @class ORSSerialPortManager;
 
 @interface MainViewController : NSViewController
 
+@property (weak) AppDelegate* appdelegate;
 @property SerialControl *serialController;
 @property (nonatomic, readonly) ORSSerialPortManager *serialPortManager;
 
 // outlets
+
 
 @property (assign) IBOutlet NSWindow *pleasewaitsheet;
 

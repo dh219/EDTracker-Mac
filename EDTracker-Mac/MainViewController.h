@@ -62,8 +62,6 @@
 @property (weak) IBOutlet NSTextField *magcal33;
 @property (weak) IBOutlet NSTextField *magpoints;
 
-@property (weak) IBOutlet NSTextField *serialsend;
-
 @property (weak) IBOutlet NSProgressIndicator *pinwheel;
 
 @property (weak) IBOutlet PointViewer *gltopdown;

@@ -8,13 +8,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainViewController">
             <connections>
-                <outlet property="array" destination="HWS-Ke-2I1" id="Bd9-Um-KSK"/>
                 <outlet property="axlevel" destination="cGh-QH-Urd" id="zOC-dZ-af7"/>
                 <outlet property="aylevel" destination="GTu-1f-gHD" id="xhs-aH-KBV"/>
                 <outlet property="azlevel" destination="PlD-sW-06h" id="Ift-sK-75b"/>
                 <outlet property="biasbutton" destination="hbf-fM-jjB" id="SiH-4g-w0i"/>
                 <outlet property="closebutton" destination="0gN-8J-eS4" id="VzS-F5-Nhu"/>
-                <outlet property="dtrbutton" destination="nfD-WT-3m8" id="668-Ok-h6k"/>
                 <outlet property="glfronton" destination="7nE-yN-fwd" id="CLn-fe-who"/>
                 <outlet property="gltopdown" destination="Iad-pg-2yw" id="ERu-Vu-agM"/>
                 <outlet property="gxlevel" destination="WxM-Ua-hfV" id="uGD-Zc-0me"/>
@@ -41,7 +39,6 @@
                 <outlet property="recentrebutton" destination="sei-8s-vfP" id="hVY-Ik-HQW"/>
                 <outlet property="respfield" destination="brW-DQ-DSB" id="Xu9-t0-Epi"/>
                 <outlet property="responsebutton" destination="eyP-7M-JYc" id="hgC-z1-y50"/>
-                <outlet property="serialsend" destination="y5b-we-NhV" id="O3a-e8-Qd3"/>
                 <outlet property="smoothfield" destination="Nlx-kw-rDh" id="qkl-Cl-KAG"/>
                 <outlet property="smoothslider" destination="Q8U-I8-MUH" id="yqW-kH-PSA"/>
                 <outlet property="tfield" destination="tcH-Jh-V31" id="KTb-8N-39Y"/>
@@ -369,17 +366,6 @@ Calibration</string>
                         <action selector="GyroBias:" target="-2" id="v9t-pL-LQd"/>
                     </connections>
                 </button>
-                <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLO-FA-Wf9">
-                    <rect key="frame" x="325" y="378" width="76" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Sv Pts" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vaW-qJ-ft3">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="SavePoints:" target="-2" id="jmQ-L5-muu"/>
-                    </connections>
-                </button>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ub-qb-cBS">
                     <rect key="frame" x="287" y="199" width="19" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -404,17 +390,6 @@ Calibration</string>
                         <action selector="ChangeSmoothing:" target="-2" id="Nsk-3G-ckE"/>
                     </connections>
                 </slider>
-                <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nfD-WT-3m8">
-                    <rect key="frame" x="151" y="378" width="89" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="DTR Off" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kO5-hk-ZPO">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="DTR:" target="-2" id="TR0-84-2Gb"/>
-                    </connections>
-                </button>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HWS-Ke-2I1">
                     <rect key="frame" x="373" y="93" width="30" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -496,17 +471,6 @@ Calibration</string>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hjy-fa-Ypz">
-                    <rect key="frame" x="240" y="378" width="81" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g0I-dt-Pfq">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="button:" target="-2" id="dXu-2U-4qU"/>
-                    </connections>
-                </button>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ag-gG-ScO">
                     <rect key="frame" x="373" y="125" width="30" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -573,17 +537,6 @@ Calibration</string>
                     <rect key="frame" x="494" y="50" width="150" height="150"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </openGLView>
-                <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xpJ-L6-R26">
-                    <rect key="frame" x="397" y="378" width="76" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Ld Pts" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="z7j-kP-KZD">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="LoadPoints:" target="-2" id="TSB-ca-wNf"/>
-                    </connections>
-                </button>
                 <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OoZ-FR-aZK">
                     <rect key="frame" x="594" y="258" width="19" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -705,15 +658,6 @@ Calibration</string>
                     <rect key="frame" x="362" y="18" width="5" height="347"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </box>
-                <textField hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y5b-we-NhV">
-                    <rect key="frame" x="371" y="438" width="96" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="JV7-Hk-DY4">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
             </subviews>
             <point key="canvasLocation" x="207" y="370"/>
         </customView>

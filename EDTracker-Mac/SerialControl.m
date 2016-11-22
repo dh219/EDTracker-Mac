@@ -29,7 +29,10 @@
 
 -(void)OpenSerial {
 
+	NSLog( @"OpenSerial(): Function triggered." );
+	
 	if( _port ) {
+		NSLog( @"OpenSerial(): Closing Port." );
 		[self CloseSerial];
 		[NSThread sleepForTimeInterval:0.5f];
 	}

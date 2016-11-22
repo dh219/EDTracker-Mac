@@ -34,9 +34,11 @@
 	_magcalmat = [[Matrix33 alloc]init];
 	
 	_qpoints = [[QLineStore alloc]init];
-	
+
+	NSLog( @"MainViewController: Initialising SerialController." );
 	_serialController = [[SerialControl alloc] init];
 	_serialController.viewcontrol = self;
+	NSLog( @"MainViewController: SerialController initialisation routines called." );
 	
 	_gltopdown.viewcontrol = self;
 	_glfronton.viewcontrol = self;
@@ -123,6 +125,7 @@
 -(IBAction)OpenSerial:(id)sender {
 	_hasverbose = false;
 	_hasinfo = false;
+	NSLog( @"MainViewController: OpenSerial()" );
 	[_serialController OpenSerial];
 }
 
@@ -188,12 +191,6 @@
 
 - (IBAction)ClearQList:(id)sender {
 	[_qpoints clearList];
-}
-
-- (IBAction)button:(id)sender {
-	NSString *s = [[self serialsend] stringValue];
-	[[_serialController port]sendData:[s dataUsingEncoding:NSUTF8StringEncoding]];
-	NSLog(@"Sent '%@'", s);
 }
 
 - (IBAction)ChangeYawScale:(id)sender {

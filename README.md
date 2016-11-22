@@ -12,13 +12,13 @@ Compatibility
 
 Please let me know if you can verify any of the below:-
 
-10.12 Sierra:       Beta tested working.
-10.11 El Capitan:   Alpha tested working.
-10.10 Yosemite:     Alpha tested working.
-10.9  Mavericks:    Alpha tested working.
-10.8 Mountain Lion: No data.
-10.7 Lion:          Not working. Runs but serial fails to connect.
-<10.6:              Not compatibile.
+* 10.12 Sierra:       Beta tested working.
+* 10.11 El Capitan:   Alpha tested working.
+* 10.10 Yosemite:     Alpha tested working.
+* 10.9  Mavericks:    Alpha tested working.
+* 10.8 Mountain Lion: No data.
+* 10.7 Lion:          Not working. Runs but serial fails to connect.
+* <10.6:              Not compatibile.
 
 Quickstart Guide
 ================

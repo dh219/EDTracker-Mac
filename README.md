@@ -11,6 +11,8 @@ OSRSerialPort framework (c) 2011-2012 Andrew R. Madsen. Used under the MIT Licen
 Compatibility
 =============
 
+NB. This software works only with EDTracker DIY. It is not for use with EDTracker Pro.
+
 Please let me know if you can verify any of the below:-
 
 * 10.12 Sierra:       Beta tested working.
